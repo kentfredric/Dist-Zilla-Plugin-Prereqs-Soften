@@ -1,6 +1,6 @@
 Release history for Dist-Zilla-Plugin-Prereqs-Soften
 
-0.001001 2014-02-18T04:50:59Z
+0.002000 2014-02-18T04:50:59Z
  [00 Minor]
  - Add property `to_relationship` that specifies the target relationship
    kind to map to.
