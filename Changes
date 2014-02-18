@@ -5,6 +5,10 @@ Release history for Dist-Zilla-Plugin-Prereqs-Soften
  - Add property `to_relationship` that specifies the target relationship
    kind to map to.
 
+ [Bugfixes]
+ - Changed order of application so target == source results in no-op as
+   opposed to removal.
+
 0.001000 2014-02-18T02:43:56Z
  - First version.
 
