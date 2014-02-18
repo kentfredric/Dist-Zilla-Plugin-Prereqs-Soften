@@ -90,8 +90,7 @@ sub register_prereqs {
           from_relation => $relation,
           to_phase      => $phase,
           to_relation   => 'recommends',
-
-        }
+        },
       );
     }
   }
