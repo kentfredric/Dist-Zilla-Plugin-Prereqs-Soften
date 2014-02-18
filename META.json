@@ -83,7 +83,10 @@
             "Moose" : "0",
             "Moose::Util::TypeConstraints" : "0",
             "MooseX::Types::Moose" : "0",
-            "perl" : "5.008"
+            "perl" : "5.008",
+            "strict" : "0",
+            "utf8" : "0",
+            "warnings" : "0"
          }
       },
       "test" : {
@@ -182,7 +185,10 @@
          "Test::More" : "1.001002",
          "Test::Pod" : "1.48",
          "Test::Pod::Coverage" : "1.08",
-         "version" : "0.9908"
+         "strict" : "1.08",
+         "utf8" : "1.13",
+         "version" : "0.9908",
+         "warnings" : "1.21"
       },
       "perl" : {
          "original" : "v5.19.8",

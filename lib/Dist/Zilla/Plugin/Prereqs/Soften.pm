@@ -103,8 +103,8 @@ sub _soften_prereqs {
   for my $module ( $source_reqs->required_modules ) {
     next unless $self->_user_wants_softening_on($module);
     my $reqstring = $source_reqs->requirements_for_module($module);
-    $target_reqs->add_string_requirement( $module, $reqstring );
     $source_reqs->clear_requirement($module);
+    $target_reqs->add_string_requirement( $module, $reqstring );
   }
   return $self;
 }
