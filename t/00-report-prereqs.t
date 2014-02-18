@@ -113,11 +113,6 @@ my $static_prereqs = do { my $x = {
                                       'Moose::Util::TypeConstraints' => '0',
                                       'MooseX::Types::Moose' => '0',
                                       'perl' => '5.008'
-                                    },
-                      'suggests' => {
-                                      'strict' => '0',
-                                      'utf8' => '0',
-                                      'warnings' => '0'
                                     }
                     },
        'test' => {

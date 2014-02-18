@@ -93,10 +93,7 @@ x_BuiltWith:
     Test::More: '1.001002'
     Test::Pod: '1.48'
     Test::Pod::Coverage: '1.08'
-    strict: '1.08'
-    utf8: '1.13'
     version: '0.9908'
-    warnings: '1.21'
   perl:
     original: v5.19.8
     qv: 1
@@ -464,7 +461,7 @@ x_Dist_Zilla:
             - strict
             - warnings
             - utf8
-          to_relationship: suggests
+          to_relationship: requires
       name: Prereqs::Soften
       version: ~
     -
