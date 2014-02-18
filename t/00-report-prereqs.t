@@ -108,14 +108,15 @@ my $static_prereqs = do { my $x = {
                     },
        'runtime' => {
                       'recommends' => {
-                                        'perl' => '5.006',
+                                        'perl' => '5.008',
                                         'strict' => '0',
                                         'warnings' => '0'
                                       },
                       'requires' => {
                                       'Dist::Zilla::Role::PrereqSource' => '0',
                                       'Moose' => '0',
-                                      'MooseX::Types::Moose' => '0'
+                                      'MooseX::Types::Moose' => '0',
+                                      'utf8' => '0'
                                     }
                     },
        'test' => {

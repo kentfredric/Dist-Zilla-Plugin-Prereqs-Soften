@@ -1,11 +1,15 @@
+use 5.008;    # utf-8
 use strict;
 use warnings;
+use utf8;
 
 package Dist::Zilla::Plugin::Prereqs::Soften;
 $Dist::Zilla::Plugin::Prereqs::Soften::VERSION = '0.001000';
 # ABSTRACT: Downgrade listed dependencies to recommendations if present.
 
-use Moose;
+our $AUTHORITY = 'cpan:KENTNL'; # AUTHORITY
+
+use Moose qw( with has around );
 use MooseX::Types::Moose qw( ArrayRef HashRef Str );
 with 'Dist::Zilla::Role::PrereqSource';
 

@@ -23,7 +23,8 @@ my %WriteMakefileArgs = (
   "PREREQ_PM" => {
     "Dist::Zilla::Role::PrereqSource" => 0,
     "Moose" => 0,
-    "MooseX::Types::Moose" => 0
+    "MooseX::Types::Moose" => 0,
+    "utf8" => 0
   },
   "TEST_REQUIRES" => {
     "ExtUtils::MakeMaker" => 0,
@@ -47,6 +48,7 @@ my %FallbackPrereqs = (
   "Moose" => 0,
   "MooseX::Types::Moose" => 0,
   "Test::More" => "0.89",
+  "utf8" => 0,
   "version" => 0
 );
 
