@@ -3,7 +3,7 @@
 use strict;
 use warnings;
 
-use 5.006;
+
 
 use ExtUtils::MakeMaker 6.30;
 
@@ -23,9 +23,7 @@ my %WriteMakefileArgs = (
   "PREREQ_PM" => {
     "Dist::Zilla::Role::PrereqSource" => 0,
     "Moose" => 0,
-    "MooseX::Types::Moose" => 0,
-    "strict" => 0,
-    "warnings" => 0
+    "MooseX::Types::Moose" => 0
   },
   "TEST_REQUIRES" => {
     "ExtUtils::MakeMaker" => 0,
@@ -49,9 +47,7 @@ my %FallbackPrereqs = (
   "Moose" => 0,
   "MooseX::Types::Moose" => 0,
   "Test::More" => "0.89",
-  "strict" => 0,
-  "version" => 0,
-  "warnings" => 0
+  "version" => 0
 );
 
 

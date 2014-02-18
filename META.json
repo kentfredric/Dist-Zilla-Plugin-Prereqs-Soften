@@ -78,13 +78,15 @@
          }
       },
       "runtime" : {
-         "requires" : {
-            "Dist::Zilla::Role::PrereqSource" : "0",
-            "Moose" : "0",
-            "MooseX::Types::Moose" : "0",
+         "recommends" : {
             "perl" : "5.006",
             "strict" : "0",
             "warnings" : "0"
+         },
+         "requires" : {
+            "Dist::Zilla::Role::PrereqSource" : "0",
+            "Moose" : "0",
+            "MooseX::Types::Moose" : "0"
          }
       },
       "test" : {
@@ -638,6 +640,20 @@
             },
             "name" : "@Author::KENTNL/::Role::BundleDeps",
             "version" : "5.013"
+         },
+         {
+            "class" : "Dist::Zilla::Plugin::Prereqs::Soften",
+            "config" : {
+               "Dist::Zilla::Plugin::Prereqs::Soften" : {
+                  "modules" : [
+                     "perl",
+                     "strict",
+                     "warnings"
+                  ]
+               }
+            },
+            "name" : "Prereqs::Soften",
+            "version" : null
          },
          {
             "class" : "Dist::Zilla::Plugin::Prereqs",

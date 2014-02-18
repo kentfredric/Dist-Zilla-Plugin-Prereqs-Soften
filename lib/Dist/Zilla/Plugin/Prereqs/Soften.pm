@@ -6,7 +6,7 @@ $Dist::Zilla::Plugin::Prereqs::Soften::VERSION = '0.001000';
 # ABSTRACT: Downgrade listed dependencies to recommendations if present.
 
 use Moose;
-use MooseX::Types::Moose qw( ArrayRef Str );
+use MooseX::Types::Moose qw( ArrayRef HashRef Str );
 with 'Dist::Zilla::Role::PrereqSource';
 
 has 'modules' => (
@@ -46,8 +46,8 @@ sub _soften_prereqs {
   my ( $self, $conf ) = @_;
   my $prereqs = $self->zilla->prereqs;
 
-  my $source_reqs = $reqs->requirements_for( $conf->{from_phase}, $conf->{from_relation} );
-  my $target_reqs = $reqs->requirements_for( $conf->{to_phase},   $conf->{to_relation} );
+  my $source_reqs = $prereqs->requirements_for( $conf->{from_phase}, $conf->{from_relation} );
+  my $target_reqs = $prereqs->requirements_for( $conf->{to_phase},   $conf->{to_relation} );
 
   for my $module ( $source_reqs->required_modules ) {
     next unless $self->_user_wants_softening_on($module);
@@ -60,9 +60,6 @@ sub _soften_prereqs {
 
 sub register_prereqs {
   my ($self)  = @_;
-  my $zilla   = $self->zilla;
-  my $prereqs = $zilla->prereqs;
-  my $guts = $prereqs->cpan_meta_prereqs->{prereqs} || {};
 
   for my $phase (qw( build test runtime )) {
     for my $relation (qw( requires )) {
@@ -77,10 +74,9 @@ sub register_prereqs {
       );
     }
   }
+  return;
 }
-return $prereqs;
-## Please see file perltidy.ERR
-}
+
 __PACKAGE__->meta->make_immutable;
 no Moose;
 
