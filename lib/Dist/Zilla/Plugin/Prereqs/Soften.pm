@@ -94,6 +94,15 @@ sub register_prereqs {
   return;
 }
 
+
+
+
+
+
+
+
+
+
 __PACKAGE__->meta->make_immutable;
 no Moose;
 
@@ -127,6 +136,10 @@ and migrates dependencies found in C<.requires> and demotes them to C<.recommend
 =head2 C<modules>
 
 A C<multi-value> argument that specifies a module name to soften in C<prereqs>.
+
+=for Pod::Coverage mvp_aliases
+mvp_multivalue_args
+register_prereqs
 
 =head1 AUTHOR
 
