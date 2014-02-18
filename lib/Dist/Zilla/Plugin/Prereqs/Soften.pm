@@ -53,7 +53,6 @@ has 'modules' => (
 
 
 
-
 use Moose::Util::TypeConstraints qw(enum);
 
 has 'to_relationship' => (
@@ -85,8 +84,11 @@ sub _user_wants_softening_on {
 }
 around dump_config => sub {
   my ( $orig, $self ) = @_;
-  my $config = $self->$orig;
-  my $this_config = { modules => $self->modules, };
+  my $config      = $self->$orig;
+  my $this_config = {
+    modules     => $self->modules,
+    to_relation => $self->to_relationship,
+  };
   $config->{ q{} . __PACKAGE__ } = $this_config;
   return $config;
 };
