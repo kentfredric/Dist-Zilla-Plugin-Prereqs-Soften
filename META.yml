@@ -30,6 +30,10 @@ requires:
   Moose: '0'
   MooseX::Types::Moose: '0'
   perl: '5.008'
+resources:
+  bugtracker: https://github.com/kentfredric/Dist-Zilla-Plugin-Prereqs-Soften/issues
+  homepage: https://github.com/kentfredric/Dist-Zilla-Plugin-Prereqs-Soften
+  repository: https://github.com/kentfredric/Dist-Zilla-Plugin-Prereqs-Soften.git
 version: '0.001000'
 x_BuiltWith:
   modules:
