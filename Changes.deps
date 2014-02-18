@@ -1,0 +1,4 @@
+0.002000
+ [Added / runtime requires]
+ - Moose::Util::TypeConstraints
+

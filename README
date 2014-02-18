@@ -3,7 +3,7 @@ NAME
     recommendations if present.
 
 VERSION
-    version 0.001000
+    version 0.002000
 
 SYNOPSIS
         [Prereqs::Soften]
@@ -18,6 +18,20 @@ ATTRIBUTES
   "modules"
     A "multi-value" argument that specifies a module name to soften in
     "prereqs".
+
+  "to_relationship"
+    The output relationship kind.
+
+    Default:
+
+        'recommends'
+
+    Valid Values:
+
+        'recommends', 'suggests', 'requires', 'conflicts'
+
+    Though the last two are reserved for people with "$num_feet > 2" or with
+    shotguns that only fire blanks.
 
 AUTHOR
     Kent Fredric <kentfredric@gmail.com>

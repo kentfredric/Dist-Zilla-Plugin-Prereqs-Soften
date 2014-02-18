@@ -20,7 +20,7 @@ name: Dist-Zilla-Plugin-Prereqs-Soften
 provides:
   Dist::Zilla::Plugin::Prereqs::Soften:
     file: lib/Dist/Zilla/Plugin/Prereqs/Soften.pm
-    version: '0.001000'
+    version: '0.002000'
 recommends:
   strict: '0'
   utf8: '0'
@@ -28,13 +28,14 @@ recommends:
 requires:
   Dist::Zilla::Role::PrereqSource: '0'
   Moose: '0'
+  Moose::Util::TypeConstraints: '0'
   MooseX::Types::Moose: '0'
   perl: '5.008'
 resources:
   bugtracker: https://github.com/kentfredric/Dist-Zilla-Plugin-Prereqs-Soften/issues
   homepage: https://github.com/kentfredric/Dist-Zilla-Plugin-Prereqs-Soften
   repository: https://github.com/kentfredric/Dist-Zilla-Plugin-Prereqs-Soften.git
-version: '0.001000'
+version: '0.002000'
 x_BuiltWith:
   modules:
     CPAN::Meta: '2.133380'
@@ -87,6 +88,7 @@ x_BuiltWith:
     File::Spec::Functions: '3.40'
     List::Util: '1.38'
     Moose: '2.1204'
+    Moose::Util::TypeConstraints: '2.1204'
     MooseX::Types::Moose: '0.41'
     Pod::Coverage::TrustPod: '0.100003'
     Test::CPAN::Changes: '0.27'
@@ -466,6 +468,7 @@ x_Dist_Zilla:
             - strict
             - warnings
             - utf8
+          to_relationship: recommends
       name: Prereqs::Soften
       version: ~
     -

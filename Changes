@@ -1,5 +1,19 @@
 Release history for Dist-Zilla-Plugin-Prereqs-Soften
 
+0.002000 2014-02-18T04:54:36Z
+ [00 Minor]
+ - Add property `to_relationship` that specifies the target relationship
+   kind to map to.
+
+ [Bugfixes]
+ - Changed order of application so target == source results in no-op as
+   opposed to removal.
+
+ [Dependencies::Stats]
+ - Dependencies changed since 0.001000, see Changes.deps{,.all,.dev} for
+   details
+ - runtime: +1
+
 0.001000 2014-02-18T02:43:56Z
  - First version.
 

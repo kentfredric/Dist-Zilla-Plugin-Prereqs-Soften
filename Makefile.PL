@@ -23,6 +23,7 @@ my %WriteMakefileArgs = (
   "PREREQ_PM" => {
     "Dist::Zilla::Role::PrereqSource" => 0,
     "Moose" => 0,
+    "Moose::Util::TypeConstraints" => 0,
     "MooseX::Types::Moose" => 0
   },
   "TEST_REQUIRES" => {
@@ -32,7 +33,7 @@ my %WriteMakefileArgs = (
     "Test::More" => "0.89",
     "version" => 0
   },
-  "VERSION" => "0.001000",
+  "VERSION" => "0.002000",
   "test" => {
     "TESTS" => "t/*.t t/00-compile/*.t"
   }
@@ -45,6 +46,7 @@ my %FallbackPrereqs = (
   "File::Spec::Functions" => 0,
   "List::Util" => 0,
   "Moose" => 0,
+  "Moose::Util::TypeConstraints" => 0,
   "MooseX::Types::Moose" => 0,
   "Test::More" => "0.89",
   "version" => 0

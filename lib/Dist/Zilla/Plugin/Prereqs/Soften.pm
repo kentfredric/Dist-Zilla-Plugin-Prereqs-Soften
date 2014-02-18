@@ -4,7 +4,7 @@ use warnings;
 use utf8;
 
 package Dist::Zilla::Plugin::Prereqs::Soften;
-$Dist::Zilla::Plugin::Prereqs::Soften::VERSION = '0.001000';
+$Dist::Zilla::Plugin::Prereqs::Soften::VERSION = '0.002000';
 # ABSTRACT: Downgrade listed dependencies to recommendations if present.
 
 our $AUTHORITY = 'cpan:KENTNL'; # AUTHORITY
@@ -37,6 +37,33 @@ has 'modules' => (
   default => sub { [] },
 );
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+use Moose::Util::TypeConstraints qw(enum);
+
+has 'to_relationship' => (
+  is => ro =>,
+  isa => enum( [qw(requires recommends suggests conflicts)] ),
+  lazy    => 1,
+  default => sub { 'recommends' },
+);
+
+no Moose::Util::TypeConstraints;
+
 has '_modules_hash' => (
   is      => ro                   =>,
   isa     => HashRef,
@@ -57,8 +84,11 @@ sub _user_wants_softening_on {
 }
 around dump_config => sub {
   my ( $orig, $self ) = @_;
-  my $config = $self->$orig;
-  my $this_config = { modules => $self->modules, };
+  my $config      = $self->$orig;
+  my $this_config = {
+    modules         => $self->modules,
+    to_relationship => $self->to_relationship,
+  };
   $config->{ q{} . __PACKAGE__ } = $this_config;
   return $config;
 };
@@ -73,8 +103,8 @@ sub _soften_prereqs {
   for my $module ( $source_reqs->required_modules ) {
     next unless $self->_user_wants_softening_on($module);
     my $reqstring = $source_reqs->requirements_for_module($module);
-    $target_reqs->add_string_requirement( $module, $reqstring );
     $source_reqs->clear_requirement($module);
+    $target_reqs->add_string_requirement( $module, $reqstring );
   }
   return $self;
 }
@@ -89,7 +119,7 @@ sub register_prereqs {
           from_phase    => $phase,
           from_relation => $relation,
           to_phase      => $phase,
-          to_relation   => 'recommends',
+          to_relation   => $self->to_relationship,
         },
       );
     }
@@ -122,7 +152,7 @@ Dist::Zilla::Plugin::Prereqs::Soften - Downgrade listed dependencies to recommen
 
 =head1 VERSION
 
-version 0.001000
+version 0.002000
 
 =head1 SYNOPSIS
 
@@ -138,6 +168,20 @@ and migrates dependencies found in C<.requires> and demotes them to C<.recommend
 =head2 C<modules>
 
 A C<multi-value> argument that specifies a module name to soften in C<prereqs>.
+
+=head2 C<to_relationship>
+
+The output relationship kind.
+
+B<Default:>
+
+    'recommends'
+
+B<Valid Values:>
+
+    'recommends', 'suggests', 'requires', 'conflicts'
+
+Though the last two are reserved for people with C<< $num_feet > 2 >> or with shotguns that only fire blanks.
 
 =for Pod::Coverage mvp_aliases
 mvp_multivalue_args
