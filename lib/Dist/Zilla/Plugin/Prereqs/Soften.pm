@@ -63,6 +63,8 @@ has 'to_relationship' => (
   default => sub { 'recommends' },
 );
 
+no Moose::Util::TypeConstraints;
+
 has '_modules_hash' => (
   is      => ro                   =>,
   isa     => HashRef,
