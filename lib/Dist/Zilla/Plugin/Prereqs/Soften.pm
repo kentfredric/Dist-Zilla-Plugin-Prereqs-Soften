@@ -37,6 +37,33 @@ has 'modules' => (
   default => sub { [] },
 );
 
+=attr C<to_relationship>
+
+The output relationship kind.
+
+B<Default:>
+
+    'recommends'
+
+B<Valid Values:>
+
+    'recommends', 'suggests', 'requires', 'conflicts'
+
+Though the last two are reserved for people with C<< $num_feet > 2 >> or with shotguns that only fire blanks.
+
+=cut
+
+use Moose::Util::TypeConstraints qw(enum);
+
+has 'to_relationship' => (
+  is => ro =>,
+  isa => enum( [qw(requires recommends suggests conflicts)] ),
+  lazy    => 1,
+  default => sub { 'recommends' },
+);
+
+no Moose::Util::TypeConstraints;
+
 has '_modules_hash' => (
   is      => ro                   =>,
   isa     => HashRef,
@@ -57,8 +84,11 @@ sub _user_wants_softening_on {
 }
 around dump_config => sub {
   my ( $orig, $self ) = @_;
-  my $config = $self->$orig;
-  my $this_config = { modules => $self->modules, };
+  my $config      = $self->$orig;
+  my $this_config = {
+    modules         => $self->modules,
+    to_relationship => $self->to_relationship,
+  };
   $config->{ q{} . __PACKAGE__ } = $this_config;
   return $config;
 };
@@ -89,7 +119,7 @@ sub register_prereqs {
           from_phase    => $phase,
           from_relation => $relation,
           to_phase      => $phase,
-          to_relation   => 'recommends',
+          to_relation   => $self->to_relationship,
         },
       );
     }

@@ -21,6 +21,20 @@ and migrates dependencies found in `.requires` and demotes them to `.recommends`
 
 A `multi-value` argument that specifies a module name to soften in `prereqs`.
 
+## `to_relationship`
+
+The output relationship kind.
+
+__Default:__
+
+    'recommends'
+
+__Valid Values:__
+
+    'recommends', 'suggests', 'requires', 'conflicts'
+
+Though the last two are reserved for people with `$num_feet > 2` or with shotguns that only fire blanks.
+
 # AUTHOR
 
 Kent Fredric <kentfredric@gmail.com>
