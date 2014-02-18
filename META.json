@@ -78,17 +78,17 @@
          }
       },
       "runtime" : {
-         "recommends" : {
-            "strict" : "0",
-            "utf8" : "0",
-            "warnings" : "0"
-         },
          "requires" : {
             "Dist::Zilla::Role::PrereqSource" : "0",
             "Moose" : "0",
             "Moose::Util::TypeConstraints" : "0",
             "MooseX::Types::Moose" : "0",
             "perl" : "5.008"
+         },
+         "suggests" : {
+            "strict" : "0",
+            "utf8" : "0",
+            "warnings" : "0"
          }
       },
       "test" : {
@@ -665,7 +665,7 @@
                      "warnings",
                      "utf8"
                   ],
-                  "to_relationship" : "recommends"
+                  "to_relationship" : "suggests"
                }
             },
             "name" : "Prereqs::Soften",

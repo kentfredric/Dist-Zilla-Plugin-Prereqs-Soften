@@ -21,10 +21,6 @@ provides:
   Dist::Zilla::Plugin::Prereqs::Soften:
     file: lib/Dist/Zilla/Plugin/Prereqs/Soften.pm
     version: '0.001001'
-recommends:
-  strict: '0'
-  utf8: '0'
-  warnings: '0'
 requires:
   Dist::Zilla::Role::PrereqSource: '0'
   Moose: '0'
@@ -468,7 +464,7 @@ x_Dist_Zilla:
             - strict
             - warnings
             - utf8
-          to_relationship: recommends
+          to_relationship: suggests
       name: Prereqs::Soften
       version: ~
     -
