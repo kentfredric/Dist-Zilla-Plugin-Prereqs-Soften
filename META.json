@@ -665,7 +665,7 @@
                      "warnings",
                      "utf8"
                   ],
-                  "to_relation" : "recommends"
+                  "to_relationship" : "recommends"
                }
             },
             "name" : "Prereqs::Soften",

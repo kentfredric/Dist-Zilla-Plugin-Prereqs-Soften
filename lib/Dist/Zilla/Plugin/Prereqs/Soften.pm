@@ -86,8 +86,8 @@ around dump_config => sub {
   my ( $orig, $self ) = @_;
   my $config      = $self->$orig;
   my $this_config = {
-    modules     => $self->modules,
-    to_relation => $self->to_relationship,
+    modules         => $self->modules,
+    to_relationship => $self->to_relationship,
   };
   $config->{ q{} . __PACKAGE__ } = $this_config;
   return $config;

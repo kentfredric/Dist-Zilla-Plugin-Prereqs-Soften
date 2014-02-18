@@ -468,7 +468,7 @@ x_Dist_Zilla:
             - strict
             - warnings
             - utf8
-          to_relation: recommends
+          to_relationship: recommends
       name: Prereqs::Soften
       version: ~
     -
