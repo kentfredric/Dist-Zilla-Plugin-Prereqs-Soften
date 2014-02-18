@@ -1,0 +1,31 @@
+NAME
+    Dist::Zilla::Plugin::Prereqs::Soften - Downgrade listed dependencies to
+    recommendations if present.
+
+VERSION
+    version 0.001000
+
+SYNOPSIS
+        [Prereqs::Soften]
+        module = Foo
+        module = Bar
+
+    This module iterates "build", "require" and "test" dependency lists and
+    migrates dependencies found in ".requires" and demotes them to
+    ".recommends"
+
+ATTRIBUTES
+  "modules"
+    A "multi-value" argument that specifies a module name to soften in
+    "prereqs".
+
+AUTHOR
+    Kent Fredric <kentfredric@gmail.com>
+
+COPYRIGHT AND LICENSE
+    This software is copyright (c) 2014 by Kent Fredric
+    <kentfredric@gmail.com>.
+
+    This is free software; you can redistribute it and/or modify it under
+    the same terms as the Perl 5 programming language system itself.
+
