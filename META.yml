@@ -22,14 +22,14 @@ provides:
     file: lib/Dist/Zilla/Plugin/Prereqs/Soften.pm
     version: '0.001000'
 recommends:
-  perl: '5.008'
   strict: '0'
+  utf8: '0'
   warnings: '0'
 requires:
   Dist::Zilla::Role::PrereqSource: '0'
   Moose: '0'
   MooseX::Types::Moose: '0'
-  utf8: '0'
+  perl: '5.008'
 version: '0.001000'
 x_BuiltWith:
   modules:
@@ -459,9 +459,9 @@ x_Dist_Zilla:
       config:
         Dist::Zilla::Plugin::Prereqs::Soften:
           modules:
-            - perl
             - strict
             - warnings
+            - utf8
       name: Prereqs::Soften
       version: ~
     -
