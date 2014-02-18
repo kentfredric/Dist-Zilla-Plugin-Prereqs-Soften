@@ -9,6 +9,23 @@ use Moose;
 use MooseX::Types::Moose qw( ArrayRef HashRef Str );
 with 'Dist::Zilla::Role::PrereqSource';
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 has 'modules' => (
   is => ro =>,
   isa => ArrayRef [Str],
@@ -59,7 +76,7 @@ sub _soften_prereqs {
 }
 
 sub register_prereqs {
-  my ($self)  = @_;
+  my ($self) = @_;
 
   for my $phase (qw( build test runtime )) {
     for my $relation (qw( requires )) {
@@ -95,6 +112,21 @@ Dist::Zilla::Plugin::Prereqs::Soften - Downgrade listed dependencies to recommen
 =head1 VERSION
 
 version 0.001000
+
+=head1 SYNOPSIS
+
+    [Prereqs::Soften]
+    module = Foo
+    module = Bar
+
+This module iterates C<build>, C<require> and C<test> dependency lists
+and migrates dependencies found in C<.requires> and demotes them to C<.recommends>
+
+=head1 ATTRIBUTES
+
+=head2 C<modules>
+
+A C<multi-value> argument that specifies a module name to soften in C<prereqs>.
 
 =head1 AUTHOR
 
