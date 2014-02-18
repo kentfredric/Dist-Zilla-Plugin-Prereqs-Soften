@@ -4,7 +4,7 @@ use warnings;
 use utf8;
 
 package Dist::Zilla::Plugin::Prereqs::Soften;
-$Dist::Zilla::Plugin::Prereqs::Soften::VERSION = '0.001000';
+$Dist::Zilla::Plugin::Prereqs::Soften::VERSION = '0.001001';
 # ABSTRACT: Downgrade listed dependencies to recommendations if present.
 
 our $AUTHORITY = 'cpan:KENTNL'; # AUTHORITY
@@ -35,6 +35,32 @@ has 'modules' => (
   isa => ArrayRef [Str],
   lazy    => 1,
   default => sub { [] },
+);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+use Moose::Util::TypeConstraints qw(enum);
+
+has 'to_relationship' => (
+  is => ro =>,
+  isa => enum( [qw(requires recommends suggests conflicts)] ),
+  lazy    => 1,
+  default => sub { 'recommends' },
 );
 
 has '_modules_hash' => (
@@ -89,7 +115,7 @@ sub register_prereqs {
           from_phase    => $phase,
           from_relation => $relation,
           to_phase      => $phase,
-          to_relation   => 'recommends',
+          to_relation   => $self->to_relationship,
         },
       );
     }
@@ -122,7 +148,7 @@ Dist::Zilla::Plugin::Prereqs::Soften - Downgrade listed dependencies to recommen
 
 =head1 VERSION
 
-version 0.001000
+version 0.001001
 
 =head1 SYNOPSIS
 
@@ -138,6 +164,20 @@ and migrates dependencies found in C<.requires> and demotes them to C<.recommend
 =head2 C<modules>
 
 A C<multi-value> argument that specifies a module name to soften in C<prereqs>.
+
+=head2 C<to_relationship>
+
+The output relationship kind.
+
+B<Default:>
+
+    'recommends'
+
+B<Valid Values:>
+
+    'recommends', 'suggests', 'requires', 'conflicts'
+
+Though the last two are reserved for people with C<< $num_feet > 2 >> or with shotguns that only fire blanks.
 
 =for Pod::Coverage mvp_aliases
 mvp_multivalue_args

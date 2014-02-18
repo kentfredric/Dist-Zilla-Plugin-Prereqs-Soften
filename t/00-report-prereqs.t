@@ -115,6 +115,7 @@ my $static_prereqs = do { my $x = {
                       'requires' => {
                                       'Dist::Zilla::Role::PrereqSource' => '0',
                                       'Moose' => '0',
+                                      'Moose::Util::TypeConstraints' => '0',
                                       'MooseX::Types::Moose' => '0',
                                       'perl' => '5.008'
                                     }
