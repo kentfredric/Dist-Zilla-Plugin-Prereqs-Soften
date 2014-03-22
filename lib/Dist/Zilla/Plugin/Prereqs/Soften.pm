@@ -98,10 +98,17 @@ no Moose::Util::TypeConstraints;
 
 
 has 'copy_to' => (
-  is => ro =>,
-  isa => ArrayRef [Str],
+  is      => 'ro',
+  isa     => ArrayRef [Str],
   lazy    => 1,
   default => sub { [] },
+);
+
+has '_copy_to_extras' => (
+  is      => 'ro',
+  isa     => ArrayRef [HashRef],
+  lazy    => 1,
+  builder => '_build__copy_to_extras',
 );
 
 has '_modules_hash' => (
@@ -112,6 +119,16 @@ has '_modules_hash' => (
 );
 sub mvp_multivalue_args { return qw(modules copy_to) }
 sub mvp_aliases { return { 'module' => 'modules' } }
+
+sub _build__copy_to_extras {
+  my $self = shift;
+  my $to   = [];
+  for my $copy ( @{ $self->copy_to } ) {
+    next unless ( my ( $copy_phase, $copy_rel ) = $copy =~ /\A([^.]+)[.](.+)\z/msx );
+    push @{$to}, { phase => $copy_phase, relation => $copy_rel };
+  }
+  return $to;
+}
 
 sub _build__modules_hash {
   my $self = shift;
@@ -162,17 +179,11 @@ sub register_prereqs {
 
   for my $phase (qw( build test runtime )) {
     for my $relation (qw( requires )) {
-      my $to = [];
-      push @$to, { phase => $phase, relation => $self->to_relationship };
-      for my $copy ( @{ $self->copy_to } ) {
-        next unless ( my ( $copy_phase, $copy_rel ) = $copy =~ /\A([^.]+)[.](.+)\z/m );
-        push @{$to}, { phase => $copy_phase, relation => $copy_rel };
-      }
       $self->_soften_prereqs(
         {
           from_phase    => $phase,
           from_relation => $relation,
-          to            => $to,
+          to            => [ { phase => $phase, relation => $self->to_relationship }, @{ $self->_copy_to_extras }, ]
         },
       );
     }
