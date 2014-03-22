@@ -77,7 +77,7 @@ has '_modules_hash' => (
   lazy    => 1,
   builder => _build__modules_hash =>,
 );
-sub mvp_multivalue_args { return qw(modules) }
+sub mvp_multivalue_args { return qw(modules copy_to) }
 sub mvp_aliases { return { 'module' => 'modules' } }
 
 sub _build__modules_hash {

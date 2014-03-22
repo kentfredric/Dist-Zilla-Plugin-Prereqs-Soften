@@ -100,7 +100,10 @@ my $static_prereqs = do { my $x = {
                                       'Test::CPAN::Meta' => '0',
                                       'Test::Kwalitee' => '1.12',
                                       'Test::Pod' => '1.41',
-                                      'Test::Pod::Coverage' => '1.08'
+                                      'Test::Pod::Coverage' => '1.08',
+                                      'strict' => '0',
+                                      'utf8' => '0',
+                                      'warnings' => '0'
                                     },
                       'suggests' => {
                                       'Dist::Zilla::PluginBundle::Author::KENTNL::Lite' => 'v1.3.0'
