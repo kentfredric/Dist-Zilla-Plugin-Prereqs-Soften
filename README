@@ -3,7 +3,7 @@ NAME
     recommendations if present.
 
 VERSION
-    version 0.002000
+    version 0.003000
 
 SYNOPSIS
         [Prereqs::Soften]
@@ -13,6 +13,8 @@ SYNOPSIS
     This module iterates "build", "require" and "test" dependency lists and
     migrates dependencies found in ".requires" and demotes them to
     ".recommends"
+
+    Optionally, it can duplicate softened dependencies to other locations
 
 ATTRIBUTES
   "modules"
@@ -32,6 +34,34 @@ ATTRIBUTES
 
     Though the last two are reserved for people with "$num_feet > 2" or with
     shotguns that only fire blanks.
+
+  "copy_to"
+    Additional places to copy the dependency to:
+
+    Default:
+
+        []
+
+    Example:
+
+        [Prereqs::Soften]
+        copy_to         = develop.requires
+        to_relationship = recommends
+        module          = Foo
+
+    This in effect means:
+
+        remove from: runtime.requires
+            → add to: develop.requires
+            → add to: runtime.recommends
+
+        remove from: test.requires
+            → add to: develop.requires
+            → add to: test.recommends
+
+         remove from: build.requires
+            → add to: develop.requires
+            → add to: build.recommends
 
 AUTHOR
     Kent Fredric <kentfredric@gmail.com>

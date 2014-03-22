@@ -1,5 +1,16 @@
 Release history for Dist-Zilla-Plugin-Prereqs-Soften
 
+0.003000 2014-03-22T18:23:49Z
+ [00 Minor]
+ - add copy_to attribute.
+
+ [Dependencies::Stats]
+ - Dependencies changed since 0.002000, see Changes.deps{,.all,.dev} for
+   details
+ - configure: ↑1
+ - develop: +3 ↑1
+ - test: ↑1
+
 0.002000 2014-02-18T04:54:36Z
  [00 Minor]
  - Add property `to_relationship` that specifies the target relationship
