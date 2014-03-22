@@ -470,6 +470,7 @@ x_Dist_Zilla:
       class: Dist::Zilla::Plugin::Prereqs::Soften
       config:
         Dist::Zilla::Plugin::Prereqs::Soften:
+          copy_to: []
           modules:
             - strict
             - warnings

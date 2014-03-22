@@ -62,6 +62,13 @@ has 'to_relationship' => (
   default => sub { 'recommends' },
 );
 
+has 'copy_to' => (
+  is => ro =>,
+  isa => ArrayRef [Str],
+  lazy    => 1,
+  default => sub { [] },
+);
+
 no Moose::Util::TypeConstraints;
 
 has '_modules_hash' => (
@@ -88,6 +95,7 @@ around dump_config => sub {
   my $this_config = {
     modules         => $self->modules,
     to_relationship => $self->to_relationship,
+    copy_to         => $self->copy_to,
   };
   $config->{ q{} . __PACKAGE__ } = $this_config;
   return $config;
@@ -98,13 +106,20 @@ sub _soften_prereqs {
   my $prereqs = $self->zilla->prereqs;
 
   my $source_reqs = $prereqs->requirements_for( $conf->{from_phase}, $conf->{from_relation} );
-  my $target_reqs = $prereqs->requirements_for( $conf->{to_phase},   $conf->{to_relation} );
+
+  my @target_reqs;
+
+  for my $target ( @{ $conf->{to} } ) {
+    push @target_reqs, $prereqs->requirements_for( $target->{phase}, $target->{relation} );
+  }
 
   for my $module ( $source_reqs->required_modules ) {
     next unless $self->_user_wants_softening_on($module);
     my $reqstring = $source_reqs->requirements_for_module($module);
     $source_reqs->clear_requirement($module);
-    $target_reqs->add_string_requirement( $module, $reqstring );
+    for my $target (@target_reqs) {
+      $target->add_string_requirement( $module, $reqstring );
+    }
   }
   return $self;
 }
@@ -114,12 +129,17 @@ sub register_prereqs {
 
   for my $phase (qw( build test runtime )) {
     for my $relation (qw( requires )) {
+      my $to = [];
+      push @$to, { phase => $phase, relation => $self->to_relationship };
+      for my $copy ( @{ $self->copy_to } ) {
+        next unless ( my ( $copy_phase, $copy_rel ) = $copy =~ /\A([^.]+)[.](.+)\z/m );
+        push @{$to}, { phase => $copy_phase, relation => $copy_rel };
+      }
       $self->_soften_prereqs(
         {
           from_phase    => $phase,
           from_relation => $relation,
-          to_phase      => $phase,
-          to_relation   => $self->to_relationship,
+          to            => $to,
         },
       );
     }
