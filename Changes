@@ -1,6 +1,8 @@
 Release history for Dist-Zilla-Plugin-Prereqs-Soften
 
 {{$NEXT}}
+
+0.003000 2014-03-22T18:23:49Z
  [00 Minor]
  - add copy_to attribute.
 
