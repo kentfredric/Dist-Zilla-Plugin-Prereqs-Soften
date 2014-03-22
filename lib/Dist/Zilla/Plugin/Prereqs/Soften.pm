@@ -4,7 +4,7 @@ use warnings;
 use utf8;
 
 package Dist::Zilla::Plugin::Prereqs::Soften;
-$Dist::Zilla::Plugin::Prereqs::Soften::VERSION = '0.002001';
+$Dist::Zilla::Plugin::Prereqs::Soften::VERSION = '0.300000';
 # ABSTRACT: Downgrade listed dependencies to recommendations if present.
 
 our $AUTHORITY = 'cpan:KENTNL'; # AUTHORITY
@@ -12,6 +12,8 @@ our $AUTHORITY = 'cpan:KENTNL'; # AUTHORITY
 use Moose qw( with has around );
 use MooseX::Types::Moose qw( ArrayRef HashRef Str );
 with 'Dist::Zilla::Role::PrereqSource';
+
+
 
 
 
@@ -62,14 +64,45 @@ has 'to_relationship' => (
   default => sub { 'recommends' },
 );
 
+no Moose::Util::TypeConstraints;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 has 'copy_to' => (
   is => ro =>,
   isa => ArrayRef [Str],
   lazy    => 1,
   default => sub { [] },
 );
-
-no Moose::Util::TypeConstraints;
 
 has '_modules_hash' => (
   is      => ro                   =>,
@@ -172,7 +205,7 @@ Dist::Zilla::Plugin::Prereqs::Soften - Downgrade listed dependencies to recommen
 
 =head1 VERSION
 
-version 0.002001
+version 0.300000
 
 =head1 SYNOPSIS
 
@@ -180,8 +213,10 @@ version 0.002001
     module = Foo
     module = Bar
 
-This module iterates C<build>, C<require> and C<test> dependency lists
-and migrates dependencies found in C<.requires> and demotes them to C<.recommends>
+This module iterates C<build>, C<require> and C<test> dependency lists and migrates dependencies found in C<.requires> and
+demotes them to C<.recommends>
+
+Optionally, it can L<< duplicate softened dependencies to other locations|/copy_to >>
 
 =head1 ATTRIBUTES
 
@@ -202,6 +237,35 @@ B<Valid Values:>
     'recommends', 'suggests', 'requires', 'conflicts'
 
 Though the last two are reserved for people with C<< $num_feet > 2 >> or with shotguns that only fire blanks.
+
+=head2 C<copy_to>
+
+Additional places to copy the dependency to:
+
+B<Default:>
+
+    []
+
+B<Example:>
+
+    [Prereqs::Soften]
+    copy_to         = develop.requires
+    to_relationship = recommends
+    module          = Foo
+
+This in effect means:
+
+    remove from: runtime.requires
+        → add to: develop.requires
+        → add to: runtime.recommends
+
+    remove from: test.requires
+        → add to: develop.requires
+        → add to: test.recommends
+
+     remove from: build.requires
+        → add to: develop.requires
+        → add to: build.recommends
 
 =for Pod::Coverage mvp_aliases
 mvp_multivalue_args
