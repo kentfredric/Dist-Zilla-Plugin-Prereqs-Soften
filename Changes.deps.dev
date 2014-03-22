@@ -1,2 +1,11 @@
-0.002000
+0.003000
+ [Added / develop requires]
+ - strict
+ - utf8
+ - warnings
+
+ [Changed / develop requires]
+ - Dist::Zilla::PluginBundle::Author::KENTNL 2.012000 → 2.012001
+
+0.002000 2014-02-18T04:54:36Z
 
