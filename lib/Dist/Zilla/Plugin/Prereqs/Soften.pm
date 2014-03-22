@@ -183,7 +183,7 @@ sub register_prereqs {
         {
           from_phase    => $phase,
           from_relation => $relation,
-          to            => [ { phase => $phase, relation => $self->to_relationship }, @{ $self->_copy_to_extras }, ]
+          to            => [ { phase => $phase, relation => $self->to_relationship }, @{ $self->_copy_to_extras }, ],
         },
       );
     }
