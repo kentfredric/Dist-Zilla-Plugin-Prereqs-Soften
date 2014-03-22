@@ -19,8 +19,10 @@ with 'Dist::Zilla::Role::PrereqSource';
     module = Foo
     module = Bar
 
-This module iterates C<build>, C<require> and C<test> dependency lists
-and migrates dependencies found in C<.requires> and demotes them to C<.recommends>
+This module iterates C<build>, C<require> and C<test> dependency lists and migrates dependencies found in C<.requires> and
+demotes them to C<.recommends>
+
+Optionally, it can L<< duplicate softened dependencies to other locations|/copy_to >>
 
 =cut
 
