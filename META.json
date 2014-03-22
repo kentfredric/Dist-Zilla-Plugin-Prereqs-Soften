@@ -113,7 +113,7 @@
    "provides" : {
       "Dist::Zilla::Plugin::Prereqs::Soften" : {
          "file" : "lib/Dist/Zilla/Plugin/Prereqs/Soften.pm",
-         "version" : "0.300000"
+         "version" : "0.003000"
       }
    },
    "release_status" : "stable",
@@ -128,7 +128,7 @@
          "web" : "https://github.com/kentfredric/Dist-Zilla-Plugin-Prereqs-Soften"
       }
    },
-   "version" : "0.300000",
+   "version" : "0.003000",
    "x_BuiltWith" : {
       "modules" : {
          "CPAN::Meta" : "2.140640",
