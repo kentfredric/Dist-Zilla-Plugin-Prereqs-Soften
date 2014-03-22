@@ -1,6 +1,9 @@
 Release history for Dist-Zilla-Plugin-Prereqs-Soften
 
 {{$NEXT}}
+ [00 Minor]
+ - add copy_to attribute.
+
  [Dependencies::Stats]
  - Dependencies changed since 0.002000, see Changes.deps{,.all,.dev} for
    details
