@@ -3,27 +3,16 @@ use strict;
 use warnings;
 
 use Test::More;
-use Path::Tiny qw(path);
-use Test::Fatal;
-use Test::DZil;
-use JSON;
 
 # FILENAME: 01-basic.t
 # CREATED: 03/23/14 19:41:51 by Kent Fredric (kentnl) <kentfredric@gmail.com>
 # ABSTRACT: Basic interface test
 
-my $tempdir = Path::Tiny->tempdir;
-my $cwd     = Path::Tiny->cwd;
+use lib 't/lib';
+use dztest;
 
-note "Creating fake dist in $tempdir";
-
-my $dist_ini = $tempdir->child('dist.ini');
-my $libdir   = $tempdir->child('lib');
-my $e_pm     = $libdir->child('E.pm');
-
-$libdir->mkpath;
-
-$dist_ini->spew(<<"EO_DISTINI");
+my $test = dztest->new();
+$test->add_file( 'dist.ini', <<"EO_DISTINI");
 name = E
 version = 0.01
 author = Kent Fredric
@@ -41,8 +30,7 @@ module = Foo
 [GatherDir]
 
 EO_DISTINI
-
-$e_pm->spew(<<'EO_EPM');
+$test->add_file( 'lib/E.pm', <<'EO_EPM');
 use strict;
 use warnings;
 
@@ -56,45 +44,19 @@ with 'Dist::Zilla::Role::Plugin';
 1;
 EO_EPM
 
-BAIL_OUT("test setup failed to copy to tempdir") if not( -e $dist_ini and -f $dist_ini );
+BAIL_OUT("test setup failed to copy to tempdir") if not $test->has_source_file('dist.ini');
 
-{
-  my $i = $tempdir->iterator( { recurse => 1 } );
-  while ( my $path = $i->() ) {
-    next if -d $path;
-    note "$path : " . $path->stat->size . " " . $path->stat->mode;
-  }
-}
+$test->note_tempdir_files;
 
-my ( $builder, $e );
-is(
-  $e = exception {
-    $builder = Builder->from_config( { dist_root => "$tempdir" } );
-  },
-  undef,
-  "Can load config"
-);
+is( $test->safe_configure, undef, "Can load config" );
 
-is(
-  $e = exception {
-    $builder->build;
-  },
-  undef,
-  "Can build"
-);
+is( $test->safe_build, undef, "Can build" );
 
-my $build_root = path( $builder->tempdir )->child('build');
-{
-  my $i = $build_root->iterator( { recurse => 1 } );
-  while ( my $path = $i->() ) {
-    next if -d $path;
-    note "$path : " . $path->stat->size . " " . $path->stat->mode;
-  }
-}
+$test->note_builddir_files;
 
-ok( -e $build_root->child('META.json'), 'META.json emitted' );
+ok( -e $test->built_json_file, 'META.json emitted' );
 
-my $meta = JSON->new->utf8(1)->decode( $build_root->child('META.json')->slurp_utf8 );
+my $meta = $test->built_json;
 
 note explain $meta;
 
