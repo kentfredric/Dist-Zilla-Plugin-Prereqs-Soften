@@ -47,6 +47,7 @@
             "Dist::Zilla::Plugin::MetaTests" : "0",
             "Dist::Zilla::Plugin::MetaYAML" : "0",
             "Dist::Zilla::Plugin::MinimumPerl" : "0",
+            "Dist::Zilla::Plugin::OptionalFeature" : "0",
             "Dist::Zilla::Plugin::PkgVersion" : "0",
             "Dist::Zilla::Plugin::PodCoverageTests" : "0",
             "Dist::Zilla::Plugin::PodSyntaxTests" : "0",
@@ -98,14 +99,21 @@
          "recommends" : {
             "CPAN::Meta" : "0",
             "CPAN::Meta::Requirements" : "2.120900",
+            "Dist::Zilla::Plugin::OptionalFeature" : "0",
             "ExtUtils::MakeMaker" : "6.92",
-            "Test::More" : "1.001002"
+            "Test::More" : "1.001003"
          },
          "requires" : {
             "ExtUtils::MakeMaker" : "0",
             "File::Spec::Functions" : "0",
+            "JSON" : "0",
             "List::Util" : "0",
+            "Path::Tiny" : "0",
+            "Test::DZil" : "0",
+            "Test::Fatal" : "0",
             "Test::More" : "0.89",
+            "Test::Requires" : "0",
+            "lib" : "0",
             "version" : "0"
          }
       }
@@ -113,7 +121,7 @@
    "provides" : {
       "Dist::Zilla::Plugin::Prereqs::Soften" : {
          "file" : "lib/Dist/Zilla/Plugin/Prereqs/Soften.pm",
-         "version" : "0.003000"
+         "version" : "0.004000"
       }
    },
    "release_status" : "stable",
@@ -128,7 +136,7 @@
          "web" : "https://github.com/kentfredric/Dist-Zilla-Plugin-Prereqs-Soften"
       }
    },
-   "version" : "0.003000",
+   "version" : "0.004000",
    "x_BuiltWith" : {
       "modules" : {
          "CPAN::Meta" : "2.140640",
@@ -156,6 +164,7 @@
          "Dist::Zilla::Plugin::MetaTests" : "5.014",
          "Dist::Zilla::Plugin::MetaYAML" : "5.014",
          "Dist::Zilla::Plugin::MinimumPerl" : "1.003",
+         "Dist::Zilla::Plugin::OptionalFeature" : "0.013",
          "Dist::Zilla::Plugin::PkgVersion" : "5.014",
          "Dist::Zilla::Plugin::PodCoverageTests" : "5.014",
          "Dist::Zilla::Plugin::PodSyntaxTests" : "5.014",
@@ -164,7 +173,7 @@
          "Dist::Zilla::Plugin::Prereqs::Recommend::MatchInstalled" : "0.001000",
          "Dist::Zilla::Plugin::ReadmeAnyFromPod" : "0.133360",
          "Dist::Zilla::Plugin::ReadmeFromPod" : "0.21",
-         "Dist::Zilla::Plugin::RunExtraTests" : "0.018",
+         "Dist::Zilla::Plugin::RunExtraTests" : "0.020",
          "Dist::Zilla::Plugin::Test::CPAN::Changes" : "0.008",
          "Dist::Zilla::Plugin::Test::Compile::PerFile" : "0.001001",
          "Dist::Zilla::Plugin::Test::Kwalitee" : "2.07",
@@ -179,17 +188,23 @@
          "Dist::Zilla::Role::PrereqSource" : "5.014",
          "ExtUtils::MakeMaker" : "6.92",
          "File::Spec::Functions" : "3.47",
+         "JSON" : "2.90",
          "List::Util" : "1.38",
          "Moose" : "2.1204",
          "Moose::Util::TypeConstraints" : "2.1204",
          "MooseX::Types::Moose" : "0.44",
+         "Path::Tiny" : "0.052",
          "Pod::Coverage::TrustPod" : "0.100003",
          "Test::CPAN::Changes" : "0.27",
          "Test::CPAN::Meta" : "0.23",
+         "Test::DZil" : "5.014",
+         "Test::Fatal" : "0.013",
          "Test::Kwalitee" : "1.18",
-         "Test::More" : "1.001002",
+         "Test::More" : "1.001003",
          "Test::Pod" : "1.48",
          "Test::Pod::Coverage" : "1.08",
+         "Test::Requires" : "0.07",
+         "lib" : "0.63",
          "strict" : "1.08",
          "utf8" : "1.13",
          "version" : "0.9908",
@@ -566,7 +581,7 @@
                }
             },
             "name" : "@Author::KENTNL/RunExtraTests",
-            "version" : "0.018"
+            "version" : "0.020"
          },
          {
             "class" : "Dist::Zilla::Plugin::TestRelease",
@@ -670,6 +685,17 @@
             "version" : "5.014"
          },
          {
+            "class" : "Dist::Zilla::Plugin::Prereqs",
+            "config" : {
+               "Dist::Zilla::Plugin::Prereqs" : {
+                  "phase" : "test",
+                  "type" : "requires"
+               }
+            },
+            "name" : "TestRequires",
+            "version" : "5.014"
+         },
+         {
             "class" : "Dist::Zilla::Plugin::Prereqs::Soften",
             "config" : {
                "Dist::Zilla::Plugin::Prereqs::Soften" : {
@@ -679,24 +705,15 @@
                   "modules" : [
                      "strict",
                      "warnings",
-                     "utf8"
+                     "utf8",
+                     "Dist::Zilla::Plugin::OptionalFeature"
                   ],
+                  "modules_from_features" : null,
                   "to_relationship" : "recommends"
                }
             },
             "name" : "Prereqs::Soften",
             "version" : null
-         },
-         {
-            "class" : "Dist::Zilla::Plugin::Prereqs",
-            "config" : {
-               "Dist::Zilla::Plugin::Prereqs" : {
-                  "phase" : "runtime",
-                  "type" : "requires"
-               }
-            },
-            "name" : "Prereqs",
-            "version" : "5.014"
          },
          {
             "class" : "Dist::Zilla::Plugin::FinderCode",

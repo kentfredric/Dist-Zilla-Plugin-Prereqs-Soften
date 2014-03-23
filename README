@@ -3,7 +3,7 @@ NAME
     recommendations if present.
 
 VERSION
-    version 0.003000
+    version 0.004000
 
 SYNOPSIS
         [Prereqs::Soften]
@@ -62,6 +62,23 @@ ATTRIBUTES
          remove from: build.requires
             → add to: develop.requires
             → add to: build.recommends
+
+  "modules_from_features"
+    This is for use in conjunction with "[OptionalFeature]", or anything
+    that injects compatible structures into "distmeta".
+
+    Recommended usage as follows:
+
+        [OptionalFeature / Etc]
+        ...
+
+        [Prereqs::Soften]
+        modules_from_features = 1
+
+    In this example, "copy_to" and "modules" are both redundant, as
+    "modules" are propagated from all features, and "copy_to" is not
+    necessary because "[OptionalFeature]" automatically adds dependencies to
+    "develop.requires"
 
 AUTHOR
     Kent Fredric <kentfredric@gmail.com>

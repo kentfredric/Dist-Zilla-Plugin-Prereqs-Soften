@@ -29,11 +29,17 @@ my %WriteMakefileArgs = (
   "TEST_REQUIRES" => {
     "ExtUtils::MakeMaker" => 0,
     "File::Spec::Functions" => 0,
+    "JSON" => 0,
     "List::Util" => 0,
+    "Path::Tiny" => 0,
+    "Test::DZil" => 0,
+    "Test::Fatal" => 0,
     "Test::More" => "0.89",
+    "Test::Requires" => 0,
+    "lib" => 0,
     "version" => 0
   },
-  "VERSION" => "0.003000",
+  "VERSION" => "0.004000",
   "test" => {
     "TESTS" => "t/*.t t/00-compile/*.t"
   }
@@ -44,11 +50,17 @@ my %FallbackPrereqs = (
   "Dist::Zilla::Role::PrereqSource" => 0,
   "ExtUtils::MakeMaker" => 0,
   "File::Spec::Functions" => 0,
+  "JSON" => 0,
   "List::Util" => 0,
   "Moose" => 0,
   "Moose::Util::TypeConstraints" => 0,
   "MooseX::Types::Moose" => 0,
+  "Path::Tiny" => 0,
+  "Test::DZil" => 0,
+  "Test::Fatal" => 0,
   "Test::More" => "0.89",
+  "Test::Requires" => 0,
+  "lib" => 0,
   "version" => 0
 );
 

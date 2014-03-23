@@ -1,5 +1,18 @@
 Release history for Dist-Zilla-Plugin-Prereqs-Soften
 
+0.004000 2014-03-23T13:16:51Z
+ [00 Minor]
+ - Add modules_from_features attribute that automatically adds all modules
+   specified in all feature grades to the list of modules to soften
+   dependencies on.
+ - Added tests
+
+ [Dependencies::Stats]
+ - Dependencies changed since 0.003000, see Changes.deps{,.all,.dev} for
+   details
+ - develop: +1
+ - test: +7 ↑1
+
 0.003000 2014-03-22T18:23:49Z
  [00 Minor]
  - add copy_to attribute.

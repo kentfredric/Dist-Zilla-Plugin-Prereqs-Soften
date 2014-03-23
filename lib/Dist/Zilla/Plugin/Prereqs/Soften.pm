@@ -4,13 +4,13 @@ use warnings;
 use utf8;
 
 package Dist::Zilla::Plugin::Prereqs::Soften;
-$Dist::Zilla::Plugin::Prereqs::Soften::VERSION = '0.003000';
+$Dist::Zilla::Plugin::Prereqs::Soften::VERSION = '0.004000';
 # ABSTRACT: Downgrade listed dependencies to recommendations if present.
 
 our $AUTHORITY = 'cpan:KENTNL'; # AUTHORITY
 
 use Moose qw( with has around );
-use MooseX::Types::Moose qw( ArrayRef HashRef Str );
+use MooseX::Types::Moose qw( ArrayRef HashRef Str Bool );
 with 'Dist::Zilla::Role::PrereqSource';
 
 
@@ -111,6 +111,32 @@ has '_copy_to_extras' => (
   builder => '_build__copy_to_extras',
 );
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+has 'modules_from_features' => (
+  is      => ro  =>,
+  isa     => Bool,
+  lazy    => 1,
+  default => sub { return },
+);
+
 has '_modules_hash' => (
   is      => ro                   =>,
   isa     => HashRef,
@@ -130,9 +156,36 @@ sub _build__copy_to_extras {
   return $to;
 }
 
+sub _get_feature_modules {
+  my ($self) = @_;
+  my $hash   = {};
+  my $meta   = $self->zilla->distmeta;
+  if ( not exists $meta->{optional_features} ) {
+    $self->log('No optional_features detected');
+    return $hash;
+  }
+  for my $feature_name ( keys %{ $meta->{optional_features} } ) {
+    my $feature = $meta->{optional_features}->{$feature_name};
+    for my $rel_name ( keys %{ $feature->{prereqs} } ) {
+      my $rel = $feature->{prereqs}->{$rel_name};
+      for my $phase_name ( keys %{$rel} ) {
+        my $phase = $rel->{$phase_name};
+        for my $module ( keys %{$phase} ) {
+          $hash->{$module} = 1;
+        }
+      }
+    }
+  }
+  return keys %{$hash};
+}
+
 sub _build__modules_hash {
-  my $self = shift;
-  return { map { ( $_, 1 ) } @{ $self->modules } };
+  my ($self) = @_;
+  my $hash = {};
+  $hash->{$_} = 1 for @{ $self->modules };
+  return $hash unless $self->modules_from_features;
+  $hash->{$_} = 1 for $self->_get_feature_modules;
+  return $hash;
 }
 
 sub _user_wants_softening_on {
@@ -143,9 +196,10 @@ around dump_config => sub {
   my ( $orig, $self ) = @_;
   my $config      = $self->$orig;
   my $this_config = {
-    modules         => $self->modules,
-    to_relationship => $self->to_relationship,
-    copy_to         => $self->copy_to,
+    modules               => $self->modules,
+    to_relationship       => $self->to_relationship,
+    copy_to               => $self->copy_to,
+    modules_from_features => $self->modules_from_features,
   };
   $config->{ q{} . __PACKAGE__ } = $this_config;
   return $config;
@@ -216,7 +270,7 @@ Dist::Zilla::Plugin::Prereqs::Soften - Downgrade listed dependencies to recommen
 
 =head1 VERSION
 
-version 0.003000
+version 0.004000
 
 =head1 SYNOPSIS
 
@@ -277,6 +331,23 @@ This in effect means:
      remove from: build.requires
         → add to: develop.requires
         → add to: build.recommends
+
+=head2 C<modules_from_features>
+
+This is for use in conjunction with L<< C<[OptionalFeature]>|Dist::Zilla::Plugin::OptionalFeature >>, or anything that injects
+compatible structures into C<distmeta>.
+
+Recommended usage as follows:
+
+    [OptionalFeature / Etc]
+    ...
+
+    [Prereqs::Soften]
+    modules_from_features = 1
+
+In this example, C<copy_to> and C<modules> are both redundant, as C<modules> are propagated from all features,
+and C<copy_to> is not necessary because  L<< C<[OptionalFeature]>|Dist::Zilla::Plugin::OptionalFeature >> automatically adds
+dependencies to C<develop.requires>
 
 =for Pod::Coverage mvp_aliases
 mvp_multivalue_args

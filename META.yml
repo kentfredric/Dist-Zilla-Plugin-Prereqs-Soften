@@ -5,8 +5,14 @@ author:
 build_requires:
   ExtUtils::MakeMaker: '0'
   File::Spec::Functions: '0'
+  JSON: '0'
   List::Util: '0'
+  Path::Tiny: '0'
+  Test::DZil: '0'
+  Test::Fatal: '0'
   Test::More: '0.89'
+  Test::Requires: '0'
+  lib: '0'
   version: '0'
 configure_requires:
   ExtUtils::MakeMaker: '6.30'
@@ -20,7 +26,7 @@ name: Dist-Zilla-Plugin-Prereqs-Soften
 provides:
   Dist::Zilla::Plugin::Prereqs::Soften:
     file: lib/Dist/Zilla/Plugin/Prereqs/Soften.pm
-    version: '0.003000'
+    version: '0.004000'
 recommends:
   strict: '0'
   utf8: '0'
@@ -35,7 +41,7 @@ resources:
   bugtracker: https://github.com/kentfredric/Dist-Zilla-Plugin-Prereqs-Soften/issues
   homepage: https://github.com/kentfredric/Dist-Zilla-Plugin-Prereqs-Soften
   repository: https://github.com/kentfredric/Dist-Zilla-Plugin-Prereqs-Soften.git
-version: '0.003000'
+version: '0.004000'
 x_BuiltWith:
   modules:
     CPAN::Meta: '2.140640'
@@ -63,6 +69,7 @@ x_BuiltWith:
     Dist::Zilla::Plugin::MetaTests: '5.014'
     Dist::Zilla::Plugin::MetaYAML: '5.014'
     Dist::Zilla::Plugin::MinimumPerl: '1.003'
+    Dist::Zilla::Plugin::OptionalFeature: '0.013'
     Dist::Zilla::Plugin::PkgVersion: '5.014'
     Dist::Zilla::Plugin::PodCoverageTests: '5.014'
     Dist::Zilla::Plugin::PodSyntaxTests: '5.014'
@@ -71,7 +78,7 @@ x_BuiltWith:
     Dist::Zilla::Plugin::Prereqs::Recommend::MatchInstalled: '0.001000'
     Dist::Zilla::Plugin::ReadmeAnyFromPod: '0.133360'
     Dist::Zilla::Plugin::ReadmeFromPod: '0.21'
-    Dist::Zilla::Plugin::RunExtraTests: '0.018'
+    Dist::Zilla::Plugin::RunExtraTests: '0.020'
     Dist::Zilla::Plugin::Test::CPAN::Changes: '0.008'
     Dist::Zilla::Plugin::Test::Compile::PerFile: '0.001001'
     Dist::Zilla::Plugin::Test::Kwalitee: '2.07'
@@ -86,17 +93,23 @@ x_BuiltWith:
     Dist::Zilla::Role::PrereqSource: '5.014'
     ExtUtils::MakeMaker: '6.92'
     File::Spec::Functions: '3.47'
+    JSON: '2.90'
     List::Util: '1.38'
     Moose: '2.1204'
     Moose::Util::TypeConstraints: '2.1204'
     MooseX::Types::Moose: '0.44'
+    Path::Tiny: '0.052'
     Pod::Coverage::TrustPod: '0.100003'
     Test::CPAN::Changes: '0.27'
     Test::CPAN::Meta: '0.23'
+    Test::DZil: '5.014'
+    Test::Fatal: '0.013'
     Test::Kwalitee: '1.18'
-    Test::More: '1.001002'
+    Test::More: '1.001003'
     Test::Pod: '1.48'
     Test::Pod::Coverage: '1.08'
+    Test::Requires: '0.07'
+    lib: '0.63'
     strict: '1.08'
     utf8: '1.13'
     version: '0.9908'
@@ -388,7 +401,7 @@ x_Dist_Zilla:
         Dist::Zilla::Role::TestRunner:
           default_jobs: 10
       name: '@Author::KENTNL/RunExtraTests'
-      version: '0.018'
+      version: '0.020'
     -
       class: Dist::Zilla::Plugin::TestRelease
       name: '@Author::KENTNL/TestRelease'
@@ -467,6 +480,14 @@ x_Dist_Zilla:
       name: '@Author::KENTNL/::Role::BundleDeps'
       version: '5.014'
     -
+      class: Dist::Zilla::Plugin::Prereqs
+      config:
+        Dist::Zilla::Plugin::Prereqs:
+          phase: test
+          type: requires
+      name: TestRequires
+      version: '5.014'
+    -
       class: Dist::Zilla::Plugin::Prereqs::Soften
       config:
         Dist::Zilla::Plugin::Prereqs::Soften:
@@ -476,17 +497,11 @@ x_Dist_Zilla:
             - strict
             - warnings
             - utf8
+            - Dist::Zilla::Plugin::OptionalFeature
+          modules_from_features: ~
           to_relationship: recommends
       name: Prereqs::Soften
       version: ~
-    -
-      class: Dist::Zilla::Plugin::Prereqs
-      config:
-        Dist::Zilla::Plugin::Prereqs:
-          phase: runtime
-          type: requires
-      name: Prereqs
-      version: '5.014'
     -
       class: Dist::Zilla::Plugin::FinderCode
       name: ':InstallModules'

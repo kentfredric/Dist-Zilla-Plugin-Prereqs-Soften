@@ -76,6 +76,7 @@ my $static_prereqs = do { my $x = {
                                       'Dist::Zilla::Plugin::MetaTests' => '0',
                                       'Dist::Zilla::Plugin::MetaYAML' => '0',
                                       'Dist::Zilla::Plugin::MinimumPerl' => '0',
+                                      'Dist::Zilla::Plugin::OptionalFeature' => '0',
                                       'Dist::Zilla::Plugin::PkgVersion' => '0',
                                       'Dist::Zilla::Plugin::PodCoverageTests' => '0',
                                       'Dist::Zilla::Plugin::PodSyntaxTests' => '0',
@@ -127,14 +128,21 @@ my $static_prereqs = do { my $x = {
                    'recommends' => {
                                      'CPAN::Meta' => '0',
                                      'CPAN::Meta::Requirements' => '2.120900',
+                                     'Dist::Zilla::Plugin::OptionalFeature' => '0',
                                      'ExtUtils::MakeMaker' => '6.92',
-                                     'Test::More' => '1.001002'
+                                     'Test::More' => '1.001003'
                                    },
                    'requires' => {
                                    'ExtUtils::MakeMaker' => '0',
                                    'File::Spec::Functions' => '0',
+                                   'JSON' => '0',
                                    'List::Util' => '0',
+                                   'Path::Tiny' => '0',
+                                   'Test::DZil' => '0',
+                                   'Test::Fatal' => '0',
                                    'Test::More' => '0.89',
+                                   'Test::Requires' => '0',
+                                   'lib' => '0',
                                    'version' => '0'
                                  }
                  }
