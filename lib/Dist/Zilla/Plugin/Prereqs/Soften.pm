@@ -10,7 +10,7 @@ package Dist::Zilla::Plugin::Prereqs::Soften;
 # AUTHORITY
 
 use Moose qw( with has around );
-use MooseX::Types::Moose qw( ArrayRef HashRef Str );
+use MooseX::Types::Moose qw( ArrayRef HashRef Str Bool );
 with 'Dist::Zilla::Role::PrereqSource';
 
 =head1 SYNOPSIS
@@ -111,6 +111,14 @@ has '_copy_to_extras' => (
   builder => '_build__copy_to_extras',
 );
 
+
+has 'modules_from_features' => (
+  is      => ro  =>,
+  isa     => Bool,
+  lazy    => 1,
+  default => sub { return },
+);
+
 has '_modules_hash' => (
   is      => ro                   =>,
   isa     => HashRef,
@@ -130,9 +138,36 @@ sub _build__copy_to_extras {
   return $to;
 }
 
+sub _get_feature_modules {
+  my ($self) = @_;
+  my $hash   = {};
+  my $meta   = $self->zilla->distmeta;
+  if ( not exists $meta->{optional_features} ) {
+    $self->log('No optional_features detected');
+    return $hash;
+  }
+  for my $feature_name ( keys %{ $meta->{optional_features} } ) {
+    my $feature = $meta->{optional_features}->{$feature_name};
+    for my $rel_name ( keys %{ $feature->{prereqs} } ) {
+      my $rel = $feature->{prereqs}->{$rel_name};
+      for my $phase_name ( keys %{$rel} ) {
+        my $phase = $rel->{$phase_name};
+        for my $module ( keys %{$phase} ) {
+          $hash->{$module} = 1;
+        }
+      }
+    }
+  }
+  return keys %{$hash};
+}
+
 sub _build__modules_hash {
-  my $self = shift;
-  return { map { ( $_, 1 ) } @{ $self->modules } };
+  my ($self) = @_;
+  my $hash = {};
+  $hash->{$_} = 1 for @{ $self->modules };
+  return $hash unless $self->modules_from_features;
+  $hash->{$_} = 1 for $self->_get_feature_modules;
+  return $hash;
 }
 
 sub _user_wants_softening_on {
