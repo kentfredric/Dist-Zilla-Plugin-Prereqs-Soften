@@ -27,6 +27,7 @@ my %WriteMakefileArgs = (
     "MooseX::Types::Moose" => 0
   },
   "TEST_REQUIRES" => {
+    "Dist::Zilla::Plugin::OptionalFeature" => 0,
     "ExtUtils::MakeMaker" => 0,
     "File::Spec::Functions" => 0,
     "JSON" => 0,
@@ -47,6 +48,7 @@ my %WriteMakefileArgs = (
 
 
 my %FallbackPrereqs = (
+  "Dist::Zilla::Plugin::OptionalFeature" => 0,
   "Dist::Zilla::Role::PrereqSource" => 0,
   "ExtUtils::MakeMaker" => 0,
   "File::Spec::Functions" => 0,

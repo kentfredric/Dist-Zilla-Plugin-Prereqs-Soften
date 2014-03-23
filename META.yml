@@ -3,6 +3,7 @@ abstract: 'Downgrade listed dependencies to recommendations if present.'
 author:
   - 'Kent Fredric <kentfredric@gmail.com>'
 build_requires:
+  Dist::Zilla::Plugin::OptionalFeature: '0'
   ExtUtils::MakeMaker: '0'
   File::Spec::Functions: '0'
   JSON: '0'
@@ -480,6 +481,14 @@ x_Dist_Zilla:
       name: '@Author::KENTNL/::Role::BundleDeps'
       version: '5.014'
     -
+      class: Dist::Zilla::Plugin::Prereqs
+      config:
+        Dist::Zilla::Plugin::Prereqs:
+          phase: test
+          type: requires
+      name: TestRequires
+      version: '5.014'
+    -
       class: Dist::Zilla::Plugin::Prereqs::Soften
       config:
         Dist::Zilla::Plugin::Prereqs::Soften:
@@ -492,22 +501,6 @@ x_Dist_Zilla:
           to_relationship: recommends
       name: Prereqs::Soften
       version: ~
-    -
-      class: Dist::Zilla::Plugin::Prereqs
-      config:
-        Dist::Zilla::Plugin::Prereqs:
-          phase: test
-          type: recommends
-      name: TestRecommends
-      version: '5.014'
-    -
-      class: Dist::Zilla::Plugin::Prereqs
-      config:
-        Dist::Zilla::Plugin::Prereqs:
-          phase: runtime
-          type: requires
-      name: Prereqs
-      version: '5.014'
     -
       class: Dist::Zilla::Plugin::FinderCode
       name: ':InstallModules'

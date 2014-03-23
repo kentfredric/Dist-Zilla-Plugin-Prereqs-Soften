@@ -127,11 +127,11 @@ my $static_prereqs = do { my $x = {
                    'recommends' => {
                                      'CPAN::Meta' => '0',
                                      'CPAN::Meta::Requirements' => '2.120900',
-                                     'Dist::Zilla::Plugin::OptionalFeature' => '0',
                                      'ExtUtils::MakeMaker' => '6.92',
                                      'Test::More' => '1.001003'
                                    },
                    'requires' => {
+                                   'Dist::Zilla::Plugin::OptionalFeature' => '0',
                                    'ExtUtils::MakeMaker' => '0',
                                    'File::Spec::Functions' => '0',
                                    'JSON' => '0',
