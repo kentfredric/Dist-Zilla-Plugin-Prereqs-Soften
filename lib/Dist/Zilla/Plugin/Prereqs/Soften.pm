@@ -4,13 +4,13 @@ use warnings;
 use utf8;
 
 package Dist::Zilla::Plugin::Prereqs::Soften;
-$Dist::Zilla::Plugin::Prereqs::Soften::VERSION = '0.003000';
+$Dist::Zilla::Plugin::Prereqs::Soften::VERSION = '0.003001';
 # ABSTRACT: Downgrade listed dependencies to recommendations if present.
 
 our $AUTHORITY = 'cpan:KENTNL'; # AUTHORITY
 
 use Moose qw( with has around );
-use MooseX::Types::Moose qw( ArrayRef HashRef Str );
+use MooseX::Types::Moose qw( ArrayRef HashRef Str Bool );
 with 'Dist::Zilla::Role::PrereqSource';
 
 
@@ -111,6 +111,13 @@ has '_copy_to_extras' => (
   builder => '_build__copy_to_extras',
 );
 
+has 'modules_from_features' => (
+  is      => ro  =>,
+  isa     => Bool,
+  lazy    => 1,
+  default => sub { return },
+);
+
 has '_modules_hash' => (
   is      => ro                   =>,
   isa     => HashRef,
@@ -130,9 +137,23 @@ sub _build__copy_to_extras {
   return $to;
 }
 
+sub _get_feature_modules {
+  my ($self) = @_;
+  my $hash = {};
+  for my $plugin ( @{ $self->zilla->plugins } ) {
+    next unless $plugin->isa('Dist::Zilla::Plugin::OptionalFeature');
+    $hash->{$_} = 1 for keys %{ $plugin->_prereqs };
+  }
+  return keys %{$hash};
+}
+
 sub _build__modules_hash {
-  my $self = shift;
-  return { map { ( $_, 1 ) } @{ $self->modules } };
+  my ($self) = @_;
+  my $hash = {};
+  $hash->{$_} = 1 for @{ $self->modules };
+  return $hash unless $self->modules_from_features;
+  $hash->{$_} = 1 for $self->_get_feature_modules;
+  return $hash;
 }
 
 sub _user_wants_softening_on {
@@ -216,7 +237,7 @@ Dist::Zilla::Plugin::Prereqs::Soften - Downgrade listed dependencies to recommen
 
 =head1 VERSION
 
-version 0.003000
+version 0.003001
 
 =head1 SYNOPSIS
 

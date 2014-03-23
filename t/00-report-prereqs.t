@@ -128,13 +128,18 @@ my $static_prereqs = do { my $x = {
                                      'CPAN::Meta' => '0',
                                      'CPAN::Meta::Requirements' => '2.120900',
                                      'ExtUtils::MakeMaker' => '6.92',
-                                     'Test::More' => '1.001002'
+                                     'Test::More' => '1.001003'
                                    },
                    'requires' => {
                                    'ExtUtils::MakeMaker' => '0',
                                    'File::Spec::Functions' => '0',
+                                   'JSON' => '0',
                                    'List::Util' => '0',
+                                   'Path::Tiny' => '0',
+                                   'Test::DZil' => '0',
+                                   'Test::Fatal' => '0',
                                    'Test::More' => '0.89',
+                                   'lib' => '0',
                                    'version' => '0'
                                  }
                  }

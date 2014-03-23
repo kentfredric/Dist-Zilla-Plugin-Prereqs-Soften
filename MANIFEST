@@ -37,6 +37,8 @@ perlcritic.deps
 perlcritic.rc
 t/00-compile/lib_Dist_Zilla_Plugin_Prereqs_Soften_pm.t
 t/00-report-prereqs.t
+t/01-basic.t
+t/lib/dztest.pm
 weaver.ini
 xt/author/critic.t
 xt/release/cpan-changes.t
