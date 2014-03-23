@@ -44,23 +44,8 @@ with 'Dist::Zilla::Role::Plugin';
 1;
 EO_EPM
 
-BAIL_OUT("test setup failed to copy to tempdir") if not $test->has_source_file('dist.ini');
-
-$test->note_tempdir_files;
-
-is( $test->safe_configure, undef, "Can load config" );
-
-is( $test->safe_build, undef, "Can build" );
-
-$test->note_builddir_files;
-
-ok( -e $test->built_json_file, 'META.json emitted' );
-
-my $meta = $test->built_json;
-
-note explain $meta;
-
-is_deeply( $meta->{prereqs}, { runtime => { recommends => { 'Foo' => 1 } } }, "Prereqs match expected", );
+$test->build_ok;
+$test->prereqs_deeply( { runtime => { recommends => { 'Foo' => 1 } } } );
 
 done_testing;
 
