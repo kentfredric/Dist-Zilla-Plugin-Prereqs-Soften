@@ -1,4 +1,19 @@
-0.003000
+0.004000
+ [Added / test recommends]
+ - Dist::Zilla::Plugin::OptionalFeature
+
+ [Added / test requires]
+ - JSON
+ - Path::Tiny
+ - Test::DZil
+ - Test::Fatal
+ - Test::Requires
+ - lib
+
+ [Changed / test recommends]
+ - Test::More 1.001002 → 1.001003
+
+0.003000 2014-03-22T18:23:49Z
  [Changed / configure recommends]
  - ExtUtils::MakeMaker 6.88 → 6.92
 
