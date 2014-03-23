@@ -196,9 +196,10 @@ around dump_config => sub {
   my ( $orig, $self ) = @_;
   my $config      = $self->$orig;
   my $this_config = {
-    modules         => $self->modules,
-    to_relationship => $self->to_relationship,
-    copy_to         => $self->copy_to,
+    modules               => $self->modules,
+    to_relationship       => $self->to_relationship,
+    copy_to               => $self->copy_to,
+    modules_from_features => $self->modules_from_features,
   };
   $config->{ q{} . __PACKAGE__ } = $this_config;
   return $config;
