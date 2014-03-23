@@ -4,7 +4,7 @@ Dist::Zilla::Plugin::Prereqs::Soften - Downgrade listed dependencies to recommen
 
 # VERSION
 
-version 0.003000
+version 0.004000
 
 # SYNOPSIS
 
@@ -65,6 +65,23 @@ This in effect means:
      remove from: build.requires
         → add to: develop.requires
         → add to: build.recommends
+
+## `modules_from_features`
+
+This is for use in conjunction with [`[OptionalFeature]`](https://metacpan.org/pod/Dist::Zilla::Plugin::OptionalFeature), or anything that injects
+compatible structures into `distmeta`.
+
+Recommended usage as follows:
+
+    [OptionalFeature / Etc]
+    ...
+
+    [Prereqs::Soften]
+    modules_from_features = 1
+
+In this example, `copy_to` and `modules` are both redundant, as `modules` are propogated from all features,
+and `copy_to` is not necessary because  [`[OptionalFeature]`](https://metacpan.org/pod/Dist::Zilla::Plugin::OptionalFeature) automatically adds
+dependencies to `develop.requires`
 
 # AUTHOR
 

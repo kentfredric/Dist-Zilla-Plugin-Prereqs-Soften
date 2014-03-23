@@ -111,6 +111,24 @@ has '_copy_to_extras' => (
   builder => '_build__copy_to_extras',
 );
 
+=attr C<modules_from_features>
+
+This is for use in conjunction with L<< C<[OptionalFeature]>|Dist::Zilla::Plugin::OptionalFeature >>, or anything that injects
+compatible structures into C<distmeta>.
+
+Recommended usage as follows:
+
+    [OptionalFeature / Etc]
+    ...
+
+    [Prereqs::Soften]
+    modules_from_features = 1
+
+In this example, C<copy_to> and C<modules> are both redundant, as C<modules> are propogated from all features,
+and C<copy_to> is not necessary because  L<< C<[OptionalFeature]>|Dist::Zilla::Plugin::OptionalFeature >> automatically adds
+dependencies to C<develop.requires>
+
+=cut
 
 has 'modules_from_features' => (
   is      => ro  =>,
