@@ -1,9 +1,10 @@
 Release history for Dist-Zilla-Plugin-Prereqs-Soften
 
-0.004000 2014-03-23T12:54:49Z
+0.004000 2014-03-23T13:02:13Z
  [Dependencies::Stats]
  - Dependencies changed since 0.003000, see Changes.deps{,.all,.dev} for
    details
+ - develop: +1
  - test: +7 ↑1
 
 0.003000 2014-03-22T18:23:49Z

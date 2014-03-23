@@ -1,4 +1,7 @@
 0.004000
+ [Added / develop requires]
+ - Dist::Zilla::Plugin::OptionalFeature
+
  [Added / test recommends]
  - Dist::Zilla::Plugin::OptionalFeature
 
