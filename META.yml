@@ -3,7 +3,6 @@ abstract: 'Downgrade listed dependencies to recommendations if present.'
 author:
   - 'Kent Fredric <kentfredric@gmail.com>'
 build_requires:
-  Dist::Zilla::Plugin::OptionalFeature: '0'
   ExtUtils::MakeMaker: '0'
   File::Spec::Functions: '0'
   JSON: '0'
@@ -27,7 +26,7 @@ name: Dist-Zilla-Plugin-Prereqs-Soften
 provides:
   Dist::Zilla::Plugin::Prereqs::Soften:
     file: lib/Dist/Zilla/Plugin/Prereqs/Soften.pm
-    version: '0.003001'
+    version: '0.004000'
 recommends:
   strict: '0'
   utf8: '0'
@@ -42,7 +41,7 @@ resources:
   bugtracker: https://github.com/kentfredric/Dist-Zilla-Plugin-Prereqs-Soften/issues
   homepage: https://github.com/kentfredric/Dist-Zilla-Plugin-Prereqs-Soften
   repository: https://github.com/kentfredric/Dist-Zilla-Plugin-Prereqs-Soften.git
-version: '0.003001'
+version: '0.004000'
 x_BuiltWith:
   modules:
     CPAN::Meta: '2.140640'
@@ -498,6 +497,7 @@ x_Dist_Zilla:
             - strict
             - warnings
             - utf8
+            - Dist::Zilla::Plugin::OptionalFeature
           to_relationship: recommends
       name: Prereqs::Soften
       version: ~
