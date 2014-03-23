@@ -139,6 +139,7 @@ my $static_prereqs = do { my $x = {
                                    'Test::DZil' => '0',
                                    'Test::Fatal' => '0',
                                    'Test::More' => '0.89',
+                                   'Test::Requires' => '0',
                                    'lib' => '0',
                                    'version' => '0'
                                  }

@@ -24,6 +24,7 @@ Foo = 1
 
 [Prereqs::Soften]
 module = Foo
+to_relationship = suggests
 
 [MetaJSON]
 
@@ -45,7 +46,7 @@ with 'Dist::Zilla::Role::Plugin';
 EO_EPM
 
 $test->build_ok;
-$test->prereqs_deeply( { runtime => { recommends => { 'Foo' => 1 } } } );
+$test->prereqs_deeply( { runtime => { suggests => { 'Foo' => 1 } } } );
 
 done_testing;
 

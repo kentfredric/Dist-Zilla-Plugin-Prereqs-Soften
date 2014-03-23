@@ -111,6 +111,25 @@ has '_copy_to_extras' => (
   builder => '_build__copy_to_extras',
 );
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 has 'modules_from_features' => (
   is      => ro  =>,
   isa     => Bool,
@@ -139,10 +158,23 @@ sub _build__copy_to_extras {
 
 sub _get_feature_modules {
   my ($self) = @_;
-  my $hash = {};
-  for my $plugin ( @{ $self->zilla->plugins } ) {
-    next unless $plugin->isa('Dist::Zilla::Plugin::OptionalFeature');
-    $hash->{$_} = 1 for keys %{ $plugin->_prereqs };
+  my $hash   = {};
+  my $meta   = $self->zilla->distmeta;
+  if ( not exists $meta->{optional_features} ) {
+    $self->log('No optional_features detected');
+    return $hash;
+  }
+  for my $feature_name ( keys %{ $meta->{optional_features} } ) {
+    my $feature = $meta->{optional_features}->{$feature_name};
+    for my $rel_name ( keys %{ $feature->{prereqs} } ) {
+      my $rel = $feature->{prereqs}->{$rel_name};
+      for my $phase_name ( keys %{$rel} ) {
+        my $phase = $rel->{$phase_name};
+        for my $module ( keys %{$phase} ) {
+          $hash->{$module} = 1;
+        }
+      }
+    }
   }
   return keys %{$hash};
 }
@@ -298,6 +330,23 @@ This in effect means:
      remove from: build.requires
         → add to: develop.requires
         → add to: build.recommends
+
+=head2 C<modules_from_features>
+
+This is for use in conjunction with L<< C<[OptionalFeature]>|Dist::Zilla::Plugin::OptionalFeature >>, or anything that injects
+compatible structures into C<distmeta>.
+
+Recommended usage as follows:
+
+    [OptionalFeature / Etc]
+    ...
+
+    [Prereqs::Soften]
+    modules_from_features = 1
+
+In this example, C<copy_to> and C<modules> are both redundant, as C<modules> are propogated from all features,
+and C<copy_to> is not necessary because  L<< C<[OptionalFeature]>|Dist::Zilla::Plugin::OptionalFeature >> automatically adds
+dependencies to C<develop.requires>
 
 =for Pod::Coverage mvp_aliases
 mvp_multivalue_args

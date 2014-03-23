@@ -8,6 +8,8 @@ use Test::More;
 # CREATED: 03/23/14 19:41:51 by Kent Fredric (kentnl) <kentfredric@gmail.com>
 # ABSTRACT: Basic interface test
 
+use Test::Requires 'Dist::Zilla::Plugin::OptionalFeature';
+
 use lib 't/lib';
 use dztest;
 
@@ -22,8 +24,12 @@ copyright_holder = Kent Fredric
 [Prereqs]
 Foo = 1
 
+[OptionalFeature / Example]
+-description = An example feature
+Foo = 2
+
 [Prereqs::Soften]
-module = Foo
+modules_from_features = 1
 
 [MetaJSON]
 
@@ -45,7 +51,12 @@ with 'Dist::Zilla::Role::Plugin';
 EO_EPM
 
 $test->build_ok;
-$test->prereqs_deeply( { runtime => { recommends => { 'Foo' => 1 } } } );
+$test->prereqs_deeply(
+  {
+    runtime => { recommends => { 'Foo' => 1 } },
+    develop => { requires   => { 'Foo' => 2 } },
+  }
+);
 
 done_testing;
 

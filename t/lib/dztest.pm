@@ -115,5 +115,32 @@ sub built_json {
   return JSON->new->utf8(1)->decode( $self->built_json_file->slurp_utf8 );
 }
 
+sub build_ok {
+  my ($self) = @_;
+  return subtest 'Configure and build' => sub {
+    for my $file ( values %{ $self->files } ) {
+      next if -e $file and -f $file;
+      BAIL_OUT("expected file $file failed to add to tempdir");
+    }
+    $self->note_tempdir_files;
+
+    is( $self->safe_configure, undef, "Can load config" );
+
+    is( $self->safe_build, undef, "Can build" );
+
+    $self->note_builddir_files;
+  };
+}
+
+sub prereqs_deeply {
+  my ( $self, $prereqs ) = @_;
+  return subtest "META.json prereqs comparison" => sub {
+    ok( -e $self->built_json_file, 'META.json emitted' );
+    my $meta = $self->built_json;
+    note explain $meta->{prereqs};
+    is_deeply( $meta->{prereqs}, $prereqs, "Prereqs match expected set" );
+  };
+}
+
 1;
 
