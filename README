@@ -76,7 +76,7 @@ ATTRIBUTES
         modules_from_features = 1
 
     In this example, "copy_to" and "modules" are both redundant, as
-    "modules" are propogated from all features, and "copy_to" is not
+    "modules" are propagated from all features, and "copy_to" is not
     necessary because "[OptionalFeature]" automatically adds dependencies to
     "develop.requires"
 

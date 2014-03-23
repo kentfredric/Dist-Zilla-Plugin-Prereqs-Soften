@@ -345,7 +345,7 @@ Recommended usage as follows:
     [Prereqs::Soften]
     modules_from_features = 1
 
-In this example, C<copy_to> and C<modules> are both redundant, as C<modules> are propogated from all features,
+In this example, C<copy_to> and C<modules> are both redundant, as C<modules> are propagated from all features,
 and C<copy_to> is not necessary because  L<< C<[OptionalFeature]>|Dist::Zilla::Plugin::OptionalFeature >> automatically adds
 dependencies to C<develop.requires>
 
