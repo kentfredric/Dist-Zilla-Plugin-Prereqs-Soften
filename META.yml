@@ -26,7 +26,7 @@ name: Dist-Zilla-Plugin-Prereqs-Soften
 provides:
   Dist::Zilla::Plugin::Prereqs::Soften:
     file: lib/Dist/Zilla/Plugin/Prereqs/Soften.pm
-    version: '0.004000'
+    version: '0.003001'
 recommends:
   strict: '0'
   utf8: '0'
@@ -41,7 +41,7 @@ resources:
   bugtracker: https://github.com/kentfredric/Dist-Zilla-Plugin-Prereqs-Soften/issues
   homepage: https://github.com/kentfredric/Dist-Zilla-Plugin-Prereqs-Soften
   repository: https://github.com/kentfredric/Dist-Zilla-Plugin-Prereqs-Soften.git
-version: '0.004000'
+version: '0.003001'
 x_BuiltWith:
   modules:
     CPAN::Meta: '2.140640'
@@ -69,6 +69,7 @@ x_BuiltWith:
     Dist::Zilla::Plugin::MetaTests: '5.014'
     Dist::Zilla::Plugin::MetaYAML: '5.014'
     Dist::Zilla::Plugin::MinimumPerl: '1.003'
+    Dist::Zilla::Plugin::OptionalFeature: '0.013'
     Dist::Zilla::Plugin::PkgVersion: '5.014'
     Dist::Zilla::Plugin::PodCoverageTests: '5.014'
     Dist::Zilla::Plugin::PodSyntaxTests: '5.014'
@@ -491,6 +492,14 @@ x_Dist_Zilla:
           to_relationship: recommends
       name: Prereqs::Soften
       version: ~
+    -
+      class: Dist::Zilla::Plugin::Prereqs
+      config:
+        Dist::Zilla::Plugin::Prereqs:
+          phase: test
+          type: recommends
+      name: TestRecommends
+      version: '5.014'
     -
       class: Dist::Zilla::Plugin::Prereqs
       config:

@@ -98,6 +98,7 @@
          "recommends" : {
             "CPAN::Meta" : "0",
             "CPAN::Meta::Requirements" : "2.120900",
+            "Dist::Zilla::Plugin::OptionalFeature" : "0",
             "ExtUtils::MakeMaker" : "6.92",
             "Test::More" : "1.001003"
          },
@@ -119,7 +120,7 @@
    "provides" : {
       "Dist::Zilla::Plugin::Prereqs::Soften" : {
          "file" : "lib/Dist/Zilla/Plugin/Prereqs/Soften.pm",
-         "version" : "0.004000"
+         "version" : "0.003001"
       }
    },
    "release_status" : "stable",
@@ -134,7 +135,7 @@
          "web" : "https://github.com/kentfredric/Dist-Zilla-Plugin-Prereqs-Soften"
       }
    },
-   "version" : "0.004000",
+   "version" : "0.003001",
    "x_BuiltWith" : {
       "modules" : {
          "CPAN::Meta" : "2.140640",
@@ -162,6 +163,7 @@
          "Dist::Zilla::Plugin::MetaTests" : "5.014",
          "Dist::Zilla::Plugin::MetaYAML" : "5.014",
          "Dist::Zilla::Plugin::MinimumPerl" : "1.003",
+         "Dist::Zilla::Plugin::OptionalFeature" : "0.013",
          "Dist::Zilla::Plugin::PkgVersion" : "5.014",
          "Dist::Zilla::Plugin::PodCoverageTests" : "5.014",
          "Dist::Zilla::Plugin::PodSyntaxTests" : "5.014",
@@ -698,6 +700,17 @@
             },
             "name" : "Prereqs::Soften",
             "version" : null
+         },
+         {
+            "class" : "Dist::Zilla::Plugin::Prereqs",
+            "config" : {
+               "Dist::Zilla::Plugin::Prereqs" : {
+                  "phase" : "test",
+                  "type" : "recommends"
+               }
+            },
+            "name" : "TestRecommends",
+            "version" : "5.014"
          },
          {
             "class" : "Dist::Zilla::Plugin::Prereqs",
