@@ -26,7 +26,7 @@ name: Dist-Zilla-Plugin-Prereqs-Soften
 provides:
   Dist::Zilla::Plugin::Prereqs::Soften:
     file: lib/Dist/Zilla/Plugin/Prereqs/Soften.pm
-    version: '0.003001'
+    version: '0.004000'
 recommends:
   strict: '0'
   utf8: '0'
@@ -41,7 +41,7 @@ resources:
   bugtracker: https://github.com/kentfredric/Dist-Zilla-Plugin-Prereqs-Soften/issues
   homepage: https://github.com/kentfredric/Dist-Zilla-Plugin-Prereqs-Soften
   repository: https://github.com/kentfredric/Dist-Zilla-Plugin-Prereqs-Soften.git
-version: '0.003001'
+version: '0.004000'
 x_BuiltWith:
   modules:
     CPAN::Meta: '2.140640'
