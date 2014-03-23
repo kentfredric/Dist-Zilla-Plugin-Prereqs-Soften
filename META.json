@@ -708,6 +708,7 @@
                      "utf8",
                      "Dist::Zilla::Plugin::OptionalFeature"
                   ],
+                  "modules_from_features" : null,
                   "to_relationship" : "recommends"
                }
             },
