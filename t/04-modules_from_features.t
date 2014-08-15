@@ -9,33 +9,19 @@ use Test::More;
 # ABSTRACT: Basic interface test
 
 use Test::Requires 'Dist::Zilla::Plugin::OptionalFeature';
+use Test::DZil qw(simple_ini);
 
 use lib 't/lib';
 use dztest;
 
 my $test = dztest->new();
-$test->add_file( 'dist.ini', <<"EO_DISTINI");
-name = E
-version = 0.01
-author = Kent Fredric
-license = Perl_5
-copyright_holder = Kent Fredric
+my @ini;
+push @ini, [ 'Prereqs', { 'Foo' => 1 } ];
+push @ini, [ 'OptionalFeature', 'Example', { '-description' => 'An example feature', 'Foo' => 2 } ];
+push @ini, [ 'Prereqs::Soften', { 'modules_from_features' => 1 } ];
+push @ini, ['GatherDir'];
 
-[Prereqs]
-Foo = 1
-
-[OptionalFeature / Example]
--description = An example feature
-Foo = 2
-
-[Prereqs::Soften]
-modules_from_features = 1
-
-[MetaJSON]
-
-[GatherDir]
-
-EO_DISTINI
+$test->add_file( 'dist.ini', simple_ini(@ini) );
 $test->add_file( 'lib/E.pm', <<'EO_EPM');
 use strict;
 use warnings;
