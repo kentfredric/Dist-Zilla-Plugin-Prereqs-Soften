@@ -1,4 +1,8 @@
-0.004000
+This file contains changes to DEVELOPMENT dependencies only ( both REQUIRED and OPTIONAL )
+
+0.004001
+
+0.004000 2014-03-23T13:16:51Z
  [Added / develop requires]
  - Dist::Zilla::Plugin::OptionalFeature
 
