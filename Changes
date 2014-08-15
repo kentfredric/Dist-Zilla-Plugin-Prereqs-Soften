@@ -1,6 +1,6 @@
 Release history for Dist-Zilla-Plugin-Prereqs-Soften
 
-0.004001 2014-08-15T01:41:56Z
+0.004001 2014-08-15T02:20:05Z
  [00 Trivial]
  - Testing code reworked to avoid need for a hard dependency on any JSON module.
 
