@@ -9,6 +9,7 @@ This file contains changes in REQUIRED dependencies for standard CPAN phases (co
 
  [Removed / test requires]
  - File::Spec::Functions
+ - JSON
  - List::Util
  - version
 

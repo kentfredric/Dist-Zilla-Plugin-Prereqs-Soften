@@ -18,7 +18,6 @@ my @ini;
 
 push @ini, [ 'Prereqs',         { 'Foo'    => 1 } ];
 push @ini, [ 'Prereqs::Soften', { 'module' => 'Foo' } ];
-push @ini, ['MetaJSON'];
 push @ini, ['GatherDir'];
 
 $test->add_file( 'dist.ini', simple_ini(@ini) );
