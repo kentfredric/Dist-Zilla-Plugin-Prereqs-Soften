@@ -21,19 +21,6 @@ with 'Dist::Zilla::Role::PrereqSource';
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
 has 'modules' => (
   is => ro =>,
   isa => ArrayRef [Str],
@@ -246,14 +233,6 @@ sub register_prereqs {
   }
   return;
 }
-
-
-
-
-
-
-
-
 
 __PACKAGE__->meta->make_immutable;
 no Moose;
