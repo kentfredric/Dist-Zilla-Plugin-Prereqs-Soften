@@ -4,7 +4,7 @@ Dist::Zilla::Plugin::Prereqs::Soften - Downgrade listed dependencies to recommen
 
 # VERSION
 
-version 0.004000
+version 0.004001
 
 # SYNOPSIS
 
@@ -27,11 +27,11 @@ A `multi-value` argument that specifies a module name to soften in `prereqs`.
 
 The output relationship kind.
 
-__Default:__
+**Default:**
 
     'recommends'
 
-__Valid Values:__
+**Valid Values:**
 
     'recommends', 'suggests', 'requires', 'conflicts'
 
@@ -41,11 +41,11 @@ Though the last two are reserved for people with `$num_feet > 2` or with shotgun
 
 Additional places to copy the dependency to:
 
-__Default:__
+**Default:**
 
     []
 
-__Example:__
+**Example:**
 
     [Prereqs::Soften]
     copy_to         = develop.requires
