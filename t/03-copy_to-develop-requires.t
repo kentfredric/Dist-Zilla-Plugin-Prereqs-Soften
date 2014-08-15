@@ -8,29 +8,19 @@ use Test::More;
 # CREATED: 03/23/14 19:41:51 by Kent Fredric (kentnl) <kentfredric@gmail.com>
 # ABSTRACT: Basic interface test
 
+use Test::DZil qw(simple_ini);
+
 use lib 't/lib';
 use dztest;
 
 my $test = dztest->new();
-$test->add_file( 'dist.ini', <<"EO_DISTINI");
-name = E
-version = 0.01
-author = Kent Fredric
-license = Perl_5
-copyright_holder = Kent Fredric
+my @ini;
 
-[Prereqs]
-Foo = 1
+push @ini, [ 'Prereqs', { 'Foo' => 1 } ];
+push @ini, [ 'Prereqs::Soften', { 'module' => 'Foo', 'copy_to' => 'develop.requires' } ];
+push @ini, ['GatherDir'];
 
-[Prereqs::Soften]
-module   = Foo
-copy_to  = develop.requires
-
-[MetaJSON]
-
-[GatherDir]
-
-EO_DISTINI
+$test->add_file( 'dist.ini', simple_ini(@ini) );
 $test->add_file( 'lib/E.pm', <<'EO_EPM');
 use strict;
 use warnings;
