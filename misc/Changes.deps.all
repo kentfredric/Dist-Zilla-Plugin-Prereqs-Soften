@@ -2,6 +2,7 @@ This file contains ALL changes in dependencies in both REQUIRED / OPTIONAL depen
 
 0.004001
  [Added / develop requires]
+ - Dist::Zilla::Plugin::CopyFilesFromBuild
  - Dist::Zilla::Plugin::Git::Contributors
 
  [Added / develop suggests]
