@@ -15,19 +15,6 @@ use Moose qw( with has around );
 use MooseX::Types::Moose qw( ArrayRef HashRef Str Bool );
 with 'Dist::Zilla::Role::PrereqSource';
 
-=head1 SYNOPSIS
-
-    [Prereqs::Soften]
-    module = Foo
-    module = Bar
-
-This module iterates C<build>, C<require> and C<test> dependency lists and migrates dependencies found in C<.requires> and
-demotes them to C<.recommends>
-
-Optionally, it can L<< duplicate softened dependencies to other locations|/copy_to >>
-
-=cut
-
 =attr C<modules>
 
 A C<multi-value> argument that specifies a module name to soften in C<prereqs>.
@@ -247,6 +234,22 @@ sub register_prereqs {
   return;
 }
 
+__PACKAGE__->meta->make_immutable;
+no Moose;
+
+1;
+
+=head1 SYNOPSIS
+
+    [Prereqs::Soften]
+    module = Foo
+    module = Bar
+
+This module iterates C<build>, C<require> and C<test> dependency lists and migrates dependencies found in C<.requires> and
+demotes them to C<.recommends>
+
+Optionally, it can L<< duplicate softened dependencies to other locations|/copy_to >>
+
 =begin Pod::Coverage
 
 mvp_aliases
@@ -254,9 +257,3 @@ mvp_multivalue_args
 register_prereqs
 
 =cut
-
-__PACKAGE__->meta->make_immutable;
-no Moose;
-
-1;
-
