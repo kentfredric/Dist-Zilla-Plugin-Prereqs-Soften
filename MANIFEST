@@ -10,6 +10,7 @@ META.yml
 Makefile.PL
 README
 dist.ini
+dist.ini.meta
 lib/Dist/Zilla/Plugin/Prereqs/Soften.pm
 maint/perlcritic.rc.gen.pl
 misc/Changes.deps
