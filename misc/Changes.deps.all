@@ -4,12 +4,12 @@ This file contains ALL changes in dependencies in both REQUIRED / OPTIONAL depen
  [Added / develop requires]
  - Dist::Zilla::Plugin::BumpVersionAfterRelease
  - Dist::Zilla::Plugin::CopyFilesFromBuild
- - Dist::Zilla::Plugin::Git::Contributors
+ - Dist::Zilla::Plugin::Git::Contributors 0.006
  - Dist::Zilla::Plugin::RewriteVersion::Sanitized
 
  [Added / develop suggests]
  - Dist::Zilla::App::Command::bakeini 0.001001
- - Dist::Zilla::PluginBundle::Author::KENTNL 2.017000
+ - Dist::Zilla::PluginBundle::Author::KENTNL 2.017001
 
  [Added / test requires]
  - File::Spec
