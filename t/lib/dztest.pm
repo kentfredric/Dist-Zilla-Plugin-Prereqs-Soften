@@ -12,7 +12,6 @@ package dztest;
 use Moose;
 use Test::DZil;
 use Test::Fatal;
-use JSON;
 use Test::More;
 use Path::Tiny qw(path);
 
@@ -105,14 +104,9 @@ sub note_builddir_files {
   $self->_note_path_files( $self->_build_root );
 }
 
-sub built_json_file {
-  my ($self) = @_;
-  return $self->_build_root->child('META.json');
-}
-
 sub built_json {
   my ($self) = @_;
-  return JSON->new->utf8(1)->decode( $self->built_json_file->slurp_utf8 );
+  return $self->builder->distmeta;
 }
 
 sub build_ok {
@@ -134,8 +128,8 @@ sub build_ok {
 
 sub prereqs_deeply {
   my ( $self, $prereqs ) = @_;
-  return subtest "META.json prereqs comparison" => sub {
-    ok( -e $self->built_json_file, 'META.json emitted' );
+  return subtest "distmeta prereqs comparison" => sub {
+    ok( defined $self->built_json, 'distmeta defined' );
     my $meta = $self->built_json;
     note explain $meta->{prereqs};
     is_deeply( $meta->{prereqs}, $prereqs, "Prereqs match expected set" );
