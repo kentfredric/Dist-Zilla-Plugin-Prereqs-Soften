@@ -1,14 +1,10 @@
-0.004000
+This file contains changes in OPTIONAL dependencies for standard CPAN phases (configure/build/runtime/test)
+
+0.004001
+
+0.004000 2014-03-23T13:16:51Z
  [Added / test recommends]
  - Dist::Zilla::Plugin::OptionalFeature
-
- [Added / test requires]
- - JSON
- - Path::Tiny
- - Test::DZil
- - Test::Fatal
- - Test::Requires
- - lib
 
  [Changed / test recommends]
  - Test::More 1.001002 → 1.001003
@@ -21,6 +17,4 @@
  - ExtUtils::MakeMaker 6.88 → 6.92
 
 0.002000 2014-02-18T04:54:36Z
- [Added / runtime requires]
- - Moose::Util::TypeConstraints
 
