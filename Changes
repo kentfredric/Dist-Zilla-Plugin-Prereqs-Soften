@@ -1,41 +1,53 @@
 Release history for Dist-Zilla-Plugin-Prereqs-Soften
 
+0.004001 2014-08-15T02:20:05Z
+ [00 Trivial]
+ - Testing code reworked to avoid need for a hard dependency on any JSON module.
+
+ [Dependencies::Stats]
+ - Dependencies changed since 0.004000, see misc/*.deps* for details
+ - configure: ↓1 (recommends: ↑1)
+ - develop: +4 -3 (suggests: +2 -1)
+ - test: +1 -4 (recommends: ↑2 -1)
+
+ [Misc]
+ - Repository moved to kentnl org
+
+ [Tests]
+ - use dzil distmeta for prereqs instead of sloshing through JSON ( GH #2, reported by ETHER )
+ - most tests cleaned slightly
+ - report versions test updated.
+
 0.004000 2014-03-23T13:16:51Z
  [00 Minor]
- - Add modules_from_features attribute that automatically adds all modules
-   specified in all feature grades to the list of modules to soften
-   dependencies on.
+ - Add modules_from_features attribute that automatically adds all modules specified in all feature grades to the list
+   of modules to soften dependencies on.
  - Added tests
 
  [Dependencies::Stats]
- - Dependencies changed since 0.003000, see Changes.deps{,.all,.dev} for
-   details
+ - Dependencies changed since 0.003000, see misc/*.deps* for details
  - develop: +1
- - test: +7 ↑1
+ - test: +6 (recommends: +1 ↑1)
 
 0.003000 2014-03-22T18:23:49Z
  [00 Minor]
  - add copy_to attribute.
 
  [Dependencies::Stats]
- - Dependencies changed since 0.002000, see Changes.deps{,.all,.dev} for
-   details
- - configure: ↑1
+ - Dependencies changed since 0.002000, see misc/*.deps* for details
+ - configure: (recommends: ↑1)
  - develop: +3 ↑1
- - test: ↑1
+ - test: (recommends: ↑1)
 
 0.002000 2014-02-18T04:54:36Z
  [00 Minor]
- - Add property `to_relationship` that specifies the target relationship
-   kind to map to.
+ - Add property `to_relationship` that specifies the target relationship kind to map to.
 
  [Bugfixes]
- - Changed order of application so target == source results in no-op as
-   opposed to removal.
+ - Changed order of application so target == source results in no-op as opposed to removal.
 
  [Dependencies::Stats]
- - Dependencies changed since 0.001000, see Changes.deps{,.all,.dev} for
-   details
+ - Dependencies changed since 0.001000, see misc/*.deps* for details
  - runtime: +1
 
 0.001000 2014-02-18T02:43:56Z

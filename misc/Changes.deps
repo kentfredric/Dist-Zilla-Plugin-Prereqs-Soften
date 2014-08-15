@@ -1,0 +1,30 @@
+This file contains changes in REQUIRED dependencies for standard CPAN phases (configure/build/runtime/test)
+
+0.004001
+ [Added / test requires]
+ - File::Spec
+
+ [Changed / configure requires]
+ - ExtUtils::MakeMaker 6.30 → 0
+
+ [Removed / test requires]
+ - File::Spec::Functions
+ - JSON
+ - List::Util
+ - version
+
+0.004000 2014-03-23T13:16:51Z
+ [Added / test requires]
+ - JSON
+ - Path::Tiny
+ - Test::DZil
+ - Test::Fatal
+ - Test::Requires
+ - lib
+
+0.003000 2014-03-22T18:23:49Z
+
+0.002000 2014-02-18T04:54:36Z
+ [Added / runtime requires]
+ - Moose::Util::TypeConstraints
+

@@ -1,0 +1,36 @@
+This file contains changes to DEVELOPMENT dependencies only ( both REQUIRED and OPTIONAL )
+
+0.004001
+ [Added / develop requires]
+ - Dist::Zilla::Plugin::BumpVersionAfterRelease
+ - Dist::Zilla::Plugin::CopyFilesFromBuild
+ - Dist::Zilla::Plugin::Git::Contributors 0.006
+ - Dist::Zilla::Plugin::RewriteVersion::Sanitized
+
+ [Added / develop suggests]
+ - Dist::Zilla::App::Command::bakeini 0.001001
+ - Dist::Zilla::PluginBundle::Author::KENTNL 2.017001
+
+ [Removed / develop requires]
+ - Dist::Zilla::Plugin::Git::NextVersion::Sanitized
+ - Dist::Zilla::Plugin::PkgVersion
+ - Dist::Zilla::PluginBundle::Author::KENTNL 2.012001
+
+ [Removed / develop suggests]
+ - Dist::Zilla::PluginBundle::Author::KENTNL::Lite v1.3.0
+
+0.004000 2014-03-23T13:16:51Z
+ [Added / develop requires]
+ - Dist::Zilla::Plugin::OptionalFeature
+
+0.003000 2014-03-22T18:23:49Z
+ [Added / develop requires]
+ - strict
+ - utf8
+ - warnings
+
+ [Changed / develop requires]
+ - Dist::Zilla::PluginBundle::Author::KENTNL 2.012000 → 2.012001
+
+0.002000 2014-02-18T04:54:36Z
+

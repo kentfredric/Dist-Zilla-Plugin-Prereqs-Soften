@@ -4,7 +4,9 @@ use warnings;
 use utf8;
 
 package Dist::Zilla::Plugin::Prereqs::Soften;
-$Dist::Zilla::Plugin::Prereqs::Soften::VERSION = '0.004000';
+
+our $VERSION = '0.004001';
+
 # ABSTRACT: Downgrade listed dependencies to recommendations if present.
 
 our $AUTHORITY = 'cpan:KENTNL'; # AUTHORITY
@@ -270,7 +272,7 @@ Dist::Zilla::Plugin::Prereqs::Soften - Downgrade listed dependencies to recommen
 
 =head1 VERSION
 
-version 0.004000
+version 0.004001
 
 =head1 SYNOPSIS
 
