@@ -1,9 +1,13 @@
 Release history for Dist-Zilla-Plugin-Prereqs-Soften
 
-0.004002 2014-08-15T19:53:33Z
+0.004002 2014-08-15T21:18:48Z
  [00 Trivial]
  - CPANDAY!
  - whitespace adjusted
+
+ [Dependencies::Stats]
+ - Dependencies changed since 0.004001, see misc/*.deps* for details
+ - develop: (suggests: ↑1)
 
  [Misc]
  - Improve source side POD to reduce build side whitespace.
