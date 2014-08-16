@@ -5,7 +5,7 @@ use utf8;
 
 package Dist::Zilla::Plugin::Prereqs::Soften;
 
-our $VERSION = '0.004001';
+our $VERSION = '0.004002';
 
 # ABSTRACT: Downgrade listed dependencies to recommendations if present.
 
@@ -14,19 +14,6 @@ our $AUTHORITY = 'cpan:KENTNL'; # AUTHORITY
 use Moose qw( with has around );
 use MooseX::Types::Moose qw( ArrayRef HashRef Str Bool );
 with 'Dist::Zilla::Role::PrereqSource';
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -247,14 +234,6 @@ sub register_prereqs {
   return;
 }
 
-
-
-
-
-
-
-
-
 __PACKAGE__->meta->make_immutable;
 no Moose;
 
@@ -272,7 +251,7 @@ Dist::Zilla::Plugin::Prereqs::Soften - Downgrade listed dependencies to recommen
 
 =head1 VERSION
 
-version 0.004001
+version 0.004002
 
 =head1 SYNOPSIS
 

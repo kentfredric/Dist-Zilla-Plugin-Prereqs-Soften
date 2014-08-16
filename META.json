@@ -80,7 +80,7 @@
          },
          "suggests" : {
             "Dist::Zilla::App::Command::bakeini" : "0.001001",
-            "Dist::Zilla::PluginBundle::Author::KENTNL" : "2.017001"
+            "Dist::Zilla::PluginBundle::Author::KENTNL" : "2.017002"
          }
       },
       "runtime" : {
@@ -119,7 +119,7 @@
    "provides" : {
       "Dist::Zilla::Plugin::Prereqs::Soften" : {
          "file" : "lib/Dist/Zilla/Plugin/Prereqs/Soften.pm",
-         "version" : "0.004001"
+         "version" : "0.004002"
       }
    },
    "release_status" : "stable",
@@ -134,7 +134,7 @@
          "web" : "https://github.com/kentnl/Dist-Zilla-Plugin-Prereqs-Soften"
       }
    },
-   "version" : "0.004001",
+   "version" : "0.004002",
    "x_BuiltWith" : {
       "modules" : {
          "CPAN::Meta" : "2.142060",
@@ -183,7 +183,7 @@
          "Dist::Zilla::Plugin::TestRelease" : "5.020",
          "Dist::Zilla::Plugin::Twitter" : "0.025",
          "Dist::Zilla::Plugin::UploadToCPAN" : "5.020",
-         "Dist::Zilla::PluginBundle::Author::KENTNL" : "2.017001",
+         "Dist::Zilla::PluginBundle::Author::KENTNL" : "2.017002",
          "Dist::Zilla::Role::PrereqSource" : "5.020",
          "ExtUtils::MakeMaker" : "6.98",
          "File::Spec" : "3.48",
@@ -643,7 +643,7 @@
                "Dist::Zilla::Plugin::Git::Tag" : {
                   "branch" : null,
                   "signed" : 0,
-                  "tag" : "0.004001-source",
+                  "tag" : "0.004002-source",
                   "tag_format" : "%v-source",
                   "tag_message" : "v%v",
                   "time_zone" : "local"
@@ -714,7 +714,7 @@
                "Dist::Zilla::Plugin::Git::Tag" : {
                   "branch" : "releases",
                   "signed" : 0,
-                  "tag" : "0.004001",
+                  "tag" : "0.004002",
                   "tag_format" : "%v",
                   "tag_message" : "v%v",
                   "time_zone" : "local"
@@ -822,7 +822,7 @@
                }
             },
             "name" : "Prereqs::Soften",
-            "version" : "0.004001"
+            "version" : "0.004002"
          },
          {
             "class" : "Dist::Zilla::Plugin::FinderCode",
