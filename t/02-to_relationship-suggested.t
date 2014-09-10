@@ -9,11 +9,9 @@ use Test::More;
 # ABSTRACT: Basic interface test
 
 use Test::DZil qw(simple_ini);
+use Dist::Zilla::Util::Test::KENTNL 1.003002 qw( dztest );
 
-use lib 't/lib';
-use dztest;
-
-my $test = dztest->new();
+my $test = dztest();
 my @ini;
 
 push @ini, [ 'Prereqs', { 'Foo' => 1 } ];
@@ -36,7 +34,7 @@ with 'Dist::Zilla::Role::Plugin';
 EO_EPM
 
 $test->build_ok;
-$test->prereqs_deeply( { runtime => { suggests => { 'Foo' => 1 } } } );
+$test->prereqs_deeply( { runtime => { suggests => { 'Foo' => '1' } } } );
 
 done_testing;
 
