@@ -1,6 +1,6 @@
 Release history for Dist-Zilla-Plugin-Prereqs-Soften
 
-0.004003 2014-08-16T00:56:14Z
+0.005000 2014-09-10T22:11:23Z
  [00 Minor]
  - Metadata
 
@@ -10,7 +10,7 @@ Release history for Dist-Zilla-Plugin-Prereqs-Soften
  - test: (recommends: ↑1)
 
  [Metadata]
- -  Author = kentnl
+ - Author = kentnl
 
 0.004002 2014-08-15T21:18:48Z
  [00 Trivial]
