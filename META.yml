@@ -1,7 +1,7 @@
 ---
 abstract: 'Downgrade listed dependencies to recommendations if present.'
 author:
-  - 'Kent Fredric <kentfredric@gmail.com>'
+  - 'Kent Fredric <kentnl@cpan.org>'
 build_requires:
   ExtUtils::MakeMaker: '0'
   File::Spec: '0'

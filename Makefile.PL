@@ -11,7 +11,7 @@ use ExtUtils::MakeMaker ;
 
 my %WriteMakefileArgs = (
   "ABSTRACT" => "Downgrade listed dependencies to recommendations if present.",
-  "AUTHOR" => "Kent Fredric <kentfredric\@gmail.com>",
+  "AUTHOR" => "Kent Fredric <kentnl\@cpan.org>",
   "CONFIGURE_REQUIRES" => {
     "ExtUtils::MakeMaker" => 0
   },
