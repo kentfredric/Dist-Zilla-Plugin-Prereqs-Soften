@@ -27,14 +27,12 @@ my %WriteMakefileArgs = (
     "MooseX::Types::Moose" => 0
   },
   "TEST_REQUIRES" => {
+    "Dist::Zilla::Util::Test::KENTNL" => "1.003002",
     "ExtUtils::MakeMaker" => 0,
     "File::Spec" => 0,
-    "Path::Tiny" => 0,
     "Test::DZil" => 0,
-    "Test::Fatal" => 0,
     "Test::More" => "0.89",
-    "Test::Requires" => 0,
-    "lib" => 0
+    "Test::Requires" => 0
   },
   "VERSION" => "0.005000",
   "test" => {
@@ -46,17 +44,15 @@ my %WriteMakefileArgs = (
 my %FallbackPrereqs = (
   "Dist::Zilla::Role::PrereqSource" => 0,
   "Dist::Zilla::Util::ConfigDumper" => 0,
+  "Dist::Zilla::Util::Test::KENTNL" => "1.003002",
   "ExtUtils::MakeMaker" => 0,
   "File::Spec" => 0,
   "Moose" => 0,
   "Moose::Util::TypeConstraints" => 0,
   "MooseX::Types::Moose" => 0,
-  "Path::Tiny" => 0,
   "Test::DZil" => 0,
-  "Test::Fatal" => 0,
   "Test::More" => "0.89",
-  "Test::Requires" => 0,
-  "lib" => 0
+  "Test::Requires" => 0
 );
 
 
