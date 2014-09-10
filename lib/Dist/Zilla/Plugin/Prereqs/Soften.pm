@@ -5,7 +5,7 @@ use utf8;
 
 package Dist::Zilla::Plugin::Prereqs::Soften;
 
-our $VERSION = '0.004002';
+our $VERSION = '0.005000';
 
 # ABSTRACT: Downgrade listed dependencies to recommendations if present.
 
@@ -13,6 +13,7 @@ our $AUTHORITY = 'cpan:KENTNL'; # AUTHORITY
 
 use Moose qw( with has around );
 use MooseX::Types::Moose qw( ArrayRef HashRef Str Bool );
+use Dist::Zilla::Util::ConfigDumper qw( config_dumper );
 with 'Dist::Zilla::Role::PrereqSource';
 
 
@@ -181,18 +182,8 @@ sub _user_wants_softening_on {
   my ( $self, $module ) = @_;
   return exists $self->_modules_hash->{$module};
 }
-around dump_config => sub {
-  my ( $orig, $self ) = @_;
-  my $config      = $self->$orig;
-  my $this_config = {
-    modules               => $self->modules,
-    to_relationship       => $self->to_relationship,
-    copy_to               => $self->copy_to,
-    modules_from_features => $self->modules_from_features,
-  };
-  $config->{ q{} . __PACKAGE__ } = $this_config;
-  return $config;
-};
+
+around dump_config => config_dumper( __PACKAGE__, qw( modules to_relationship copy_to modules_from_features ) );
 
 sub _soften_prereqs {
   my ( $self, $conf ) = @_;
@@ -251,7 +242,7 @@ Dist::Zilla::Plugin::Prereqs::Soften - Downgrade listed dependencies to recommen
 
 =head1 VERSION
 
-version 0.004002
+version 0.005000
 
 =head1 SYNOPSIS
 
@@ -336,7 +327,7 @@ register_prereqs
 
 =head1 AUTHOR
 
-Kent Fredric <kentfredric@gmail.com>
+Kent Fredric <kentnl@cpan.org>
 
 =head1 COPYRIGHT AND LICENSE
 

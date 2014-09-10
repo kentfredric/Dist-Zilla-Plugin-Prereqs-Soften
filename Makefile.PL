@@ -11,7 +11,7 @@ use ExtUtils::MakeMaker ;
 
 my %WriteMakefileArgs = (
   "ABSTRACT" => "Downgrade listed dependencies to recommendations if present.",
-  "AUTHOR" => "Kent Fredric <kentfredric\@gmail.com>",
+  "AUTHOR" => "Kent Fredric <kentnl\@cpan.org>",
   "CONFIGURE_REQUIRES" => {
     "ExtUtils::MakeMaker" => 0
   },
@@ -21,21 +21,20 @@ my %WriteMakefileArgs = (
   "NAME" => "Dist::Zilla::Plugin::Prereqs::Soften",
   "PREREQ_PM" => {
     "Dist::Zilla::Role::PrereqSource" => 0,
+    "Dist::Zilla::Util::ConfigDumper" => 0,
     "Moose" => 0,
     "Moose::Util::TypeConstraints" => 0,
     "MooseX::Types::Moose" => 0
   },
   "TEST_REQUIRES" => {
+    "Dist::Zilla::Util::Test::KENTNL" => "1.003002",
     "ExtUtils::MakeMaker" => 0,
     "File::Spec" => 0,
-    "Path::Tiny" => 0,
     "Test::DZil" => 0,
-    "Test::Fatal" => 0,
     "Test::More" => "0.89",
-    "Test::Requires" => 0,
-    "lib" => 0
+    "Test::Requires" => 0
   },
-  "VERSION" => "0.004002",
+  "VERSION" => "0.005000",
   "test" => {
     "TESTS" => "t/*.t t/00-compile/*.t"
   }
@@ -44,17 +43,16 @@ my %WriteMakefileArgs = (
 
 my %FallbackPrereqs = (
   "Dist::Zilla::Role::PrereqSource" => 0,
+  "Dist::Zilla::Util::ConfigDumper" => 0,
+  "Dist::Zilla::Util::Test::KENTNL" => "1.003002",
   "ExtUtils::MakeMaker" => 0,
   "File::Spec" => 0,
   "Moose" => 0,
   "Moose::Util::TypeConstraints" => 0,
   "MooseX::Types::Moose" => 0,
-  "Path::Tiny" => 0,
   "Test::DZil" => 0,
-  "Test::Fatal" => 0,
   "Test::More" => "0.89",
-  "Test::Requires" => 0,
-  "lib" => 0
+  "Test::Requires" => 0
 );
 
 

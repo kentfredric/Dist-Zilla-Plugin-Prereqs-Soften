@@ -3,7 +3,7 @@ NAME
     recommendations if present.
 
 VERSION
-    version 0.004002
+    version 0.005000
 
 SYNOPSIS
         [Prereqs::Soften]
@@ -81,7 +81,7 @@ ATTRIBUTES
     "develop.requires"
 
 AUTHOR
-    Kent Fredric <kentfredric@gmail.com>
+    Kent Fredric <kentnl@cpan.org>
 
 COPYRIGHT AND LICENSE
     This software is copyright (c) 2014 by Kent Fredric
