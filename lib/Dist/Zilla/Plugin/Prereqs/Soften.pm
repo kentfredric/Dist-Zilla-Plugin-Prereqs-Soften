@@ -5,7 +5,7 @@ use utf8;
 
 package Dist::Zilla::Plugin::Prereqs::Soften;
 
-our $VERSION = '0.005000';
+our $VERSION = '0.005001';
 
 # ABSTRACT: Downgrade listed dependencies to recommendations if present.
 
@@ -242,7 +242,7 @@ Dist::Zilla::Plugin::Prereqs::Soften - Downgrade listed dependencies to recommen
 
 =head1 VERSION
 
-version 0.005000
+version 0.005001
 
 =head1 SYNOPSIS
 
