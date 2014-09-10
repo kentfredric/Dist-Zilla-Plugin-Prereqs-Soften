@@ -5,7 +5,7 @@ use utf8;
 
 package Dist::Zilla::Plugin::Prereqs::Soften;
 
-our $VERSION = '0.005000';
+our $VERSION = '0.005001';
 
 # ABSTRACT: Downgrade listed dependencies to recommendations if present.
 
