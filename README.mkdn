@@ -4,7 +4,7 @@ Dist::Zilla::Plugin::Prereqs::Soften - Downgrade listed dependencies to recommen
 
 # VERSION
 
-version 0.005000
+version 0.005001
 
 # SYNOPSIS
 
