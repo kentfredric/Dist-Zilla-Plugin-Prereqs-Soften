@@ -2,12 +2,17 @@ Release history for Dist-Zilla-Plugin-Prereqs-Soften
 
 {{$NEXT}}
  [00 Minor]
+ - Internals
  - Metadata
 
  [Dependencies::Stats]
  - Dependencies changed since 0.004002, see misc/*.deps* for details
  - develop: +1 ↑1 (suggests: ↑2)
+ - runtime: +1
  - test: (recommends: ↑1)
+
+ [Internals]
+ - dump_config implemented with DZU:ConfigDumper
 
  [Metadata]
  - Author = kentnl
