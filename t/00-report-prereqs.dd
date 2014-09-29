@@ -66,7 +66,7 @@ do { my $x = {
                                     },
                       'suggests' => {
                                       'Dist::Zilla::App::Command::bakeini' => '0.001002',
-                                      'Dist::Zilla::PluginBundle::Author::KENTNL' => '2.020001'
+                                      'Dist::Zilla::PluginBundle::Author::KENTNL' => '2.020003'
                                     }
                     },
        'runtime' => {
@@ -87,6 +87,7 @@ do { my $x = {
        'test' => {
                    'recommends' => {
                                      'CPAN::Meta' => '2.120900',
+                                     'Dist::Zilla' => '5.020',
                                      'Dist::Zilla::Plugin::OptionalFeature' => '0',
                                      'ExtUtils::MakeMaker' => '6.98',
                                      'Test::More' => '1.001006'

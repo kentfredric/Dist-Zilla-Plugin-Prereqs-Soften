@@ -1,5 +1,14 @@
 Release history for Dist-Zilla-Plugin-Prereqs-Soften
 
+0.005001 2014-09-29T14:03:18Z
+ [Bugfix]
+ - Dont fail with newer OptionalFaetures due to test subsequently needing a Makefile.PL to work
+
+ [Dependencies::Stats]
+ - Dependencies changed since 0.005000, see misc/*.deps* for details
+ - develop: (suggests: ↑1)
+ - test: (recommends: +1)
+
 0.005000 2014-09-10T22:29:32Z
  [00 Minor]
  - Internals tweaked to be more modern
