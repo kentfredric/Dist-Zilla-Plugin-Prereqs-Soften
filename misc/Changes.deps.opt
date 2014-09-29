@@ -1,6 +1,8 @@
 This file contains changes in OPTIONAL dependencies for standard CPAN phases (configure/build/runtime/test)
 
-0.005001
+0.005002
+
+0.005001 2014-09-29T14:03:18Z
  [Added / test recommends]
  - Dist::Zilla 5.020
 
