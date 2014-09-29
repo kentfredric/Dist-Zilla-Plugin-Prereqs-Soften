@@ -13,10 +13,11 @@ normal_form       = numify
 mantissa          = 6
 toolkit           = eumm
 toolkit_hardness  = soft
-twitter_hash_tags = #perl #cpan
+twitter_extra_hash_tags = #distzilla
 copyfiles         = LICENSE
 srcreadme         = mkdn
 bumpversions      = 1
+
 ; version_major     = 0
 ; version_minor     = 1
 ; the following data denotes when this minor was minted
