@@ -16,6 +16,7 @@ my $test = dztest();
 my @ini;
 
 push @ini, [ 'Prereqs', { 'Foo' => 1 } ];
+push @ini, ['MakeMaker'];
 push @ini, [ 'OptionalFeature', 'Example', { '-description' => 'An example feature', 'Foo' => 2 } ];
 push @ini, [ 'Prereqs::Soften', { 'modules_from_features' => 1 } ];
 push @ini, ['GatherDir'];
@@ -38,8 +39,9 @@ EO_EPM
 $test->build_ok;
 $test->prereqs_deeply(
   {
-    runtime => { recommends => { 'Foo' => '1' } },
-    develop => { requires   => { 'Foo' => '2' } },
+    configure => { requires   => { 'ExtUtils::MakeMaker' => '0' } },
+    runtime   => { recommends => { 'Foo'                 => '1' } },
+    develop   => { requires   => { 'Foo'                 => '2' } },
   }
 );
 
