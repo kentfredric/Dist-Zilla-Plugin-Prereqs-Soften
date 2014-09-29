@@ -8,7 +8,10 @@ use Test::More;
 # CREATED: 03/23/14 19:41:51 by Kent Fredric (kentnl) <kentfredric@gmail.com>
 # ABSTRACT: Basic interface test
 
-use Test::Requires 'Dist::Zilla::Plugin::OptionalFeature';
+use Test::Requires {
+  'Dist::Zilla::Plugin::OptionalFeature' => 0,
+  'Dist::Zilla'                          => 5.020,    # EUMM Ver = 0
+};
 use Test::DZil qw(simple_ini);
 use Dist::Zilla::Util::Test::KENTNL 1.003002 qw( dztest );
 
