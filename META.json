@@ -102,6 +102,7 @@
       "test" : {
          "recommends" : {
             "CPAN::Meta" : "2.120900",
+            "Dist::Zilla" : "5.020",
             "Dist::Zilla::Plugin::OptionalFeature" : "0",
             "ExtUtils::MakeMaker" : "6.98",
             "Test::More" : "1.001006"
@@ -138,6 +139,7 @@
    "x_BuiltWith" : {
       "modules" : {
          "CPAN::Meta" : "2.142690",
+         "Dist::Zilla" : "5.020",
          "Dist::Zilla::App::Command::bakeini" : "0.001002",
          "Dist::Zilla::Plugin::Author::KENTNL::RecommendFixes" : "0.003006",
          "Dist::Zilla::Plugin::Authority" : "1.006",
@@ -820,6 +822,17 @@
                }
             },
             "name" : "TestRequires",
+            "version" : "5.020"
+         },
+         {
+            "class" : "Dist::Zilla::Plugin::Prereqs",
+            "config" : {
+               "Dist::Zilla::Plugin::Prereqs" : {
+                  "phase" : "test",
+                  "type" : "recommends"
+               }
+            },
+            "name" : "TestRecommends",
             "version" : "5.020"
          },
          {

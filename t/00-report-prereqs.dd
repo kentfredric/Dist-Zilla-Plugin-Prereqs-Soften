@@ -87,6 +87,7 @@ do { my $x = {
        'test' => {
                    'recommends' => {
                                      'CPAN::Meta' => '2.120900',
+                                     'Dist::Zilla' => '5.020',
                                      'Dist::Zilla::Plugin::OptionalFeature' => '0',
                                      'ExtUtils::MakeMaker' => '6.98',
                                      'Test::More' => '1.001006'

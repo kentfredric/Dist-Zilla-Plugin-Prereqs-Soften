@@ -30,6 +30,9 @@ bumpversions      = 1
 [Prereqs / TestRequires]
 Dist::Zilla::Plugin::OptionalFeature = 0
 
+[Prereqs / TestRecommends]
+Dist::Zilla = 5.020
+
 [Prereqs::Soften]
 copy_to = develop.requires
 module = strict
