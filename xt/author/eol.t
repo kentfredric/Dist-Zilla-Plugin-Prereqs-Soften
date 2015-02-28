@@ -14,7 +14,8 @@ my @files = (
     't/01-basic.t',
     't/02-to_relationship-suggested.t',
     't/03-copy_to-develop-requires.t',
-    't/04-modules_from_features.t'
+    't/04-modules_from_features.t',
+    't/05-to_relationship-none.t'
 );
 
 eol_unix_ok($_, { trailing_whitespace => 1 }) foreach @files;

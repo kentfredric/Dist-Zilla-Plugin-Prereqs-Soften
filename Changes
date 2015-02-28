@@ -1,12 +1,17 @@
 Release history for Dist-Zilla-Plugin-Prereqs-Soften
 
-0.005002 2015-02-28T04:51:06Z b7fcc23
+0.006000 2015-02-28T05:06:54Z ac9c807
  [Dependencies::Stats]
  - Dependencies changed since 0.005001, see misc/*.deps* for details
  - configure: +1 (recommends: ↑1)
- - develop: +10 ↑2 -2 (recommends: +1, suggests: ↑2)
- - runtime: (recommends: +1)
+ - develop: +10 ↑2 -3 (recommends: +1, suggests: ↑2)
+ - runtime: ↓1 (recommends: +1 -1)
  - test: +1 (recommends: ↑1 ↓1)
+
+ [Features]
+ - Can now specify to_relationship = none. This is useful in conjunction with copy_to to move phases. Its admittedly
+   awkward syntax, but I need to re-write half the internals now because YAGNI made them too simple earlier, and now
+   IGNI.
 
 0.005001 2014-09-29T14:03:18Z
  [Bugfix]

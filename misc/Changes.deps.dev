@@ -27,6 +27,7 @@ This file contains changes to DEVELOPMENT dependencies only ( both REQUIRED and 
  [Removed / develop requires]
  - Dist::Zilla::Plugin::EOLTests
  - Dist::Zilla::Plugin::ReadmeFromPod
+ - utf8
 
 0.005001 2014-09-29T14:03:18Z
  [Changed / develop suggests]

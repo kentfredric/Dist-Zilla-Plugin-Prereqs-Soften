@@ -4,7 +4,7 @@ use warnings;
 
 package Dist::Zilla::Plugin::Prereqs::Soften;
 
-our $VERSION = '0.005002';
+our $VERSION = '0.006000';
 
 # ABSTRACT: Downgrade listed dependencies to recommendations if present.
 
@@ -48,7 +48,7 @@ use Moose::Util::TypeConstraints qw(enum);
 
 has 'to_relationship' => (
   is => ro =>,
-  isa => enum( [qw(requires recommends suggests conflicts)] ),
+  isa => enum( [qw(none requires recommends suggests conflicts)] ),
   lazy    => 1,
   default => sub { 'recommends' },
 );
@@ -193,6 +193,7 @@ sub _soften_prereqs {
   my @target_reqs;
 
   for my $target ( @{ $conf->{to} } ) {
+    next if $target->{relation} eq 'none';
     push @target_reqs, $prereqs->requirements_for( $target->{phase}, $target->{relation} );
   }
 
@@ -241,7 +242,7 @@ Dist::Zilla::Plugin::Prereqs::Soften - Downgrade listed dependencies to recommen
 
 =head1 VERSION
 
-version 0.005002
+version 0.006000
 
 =head1 SYNOPSIS
 
