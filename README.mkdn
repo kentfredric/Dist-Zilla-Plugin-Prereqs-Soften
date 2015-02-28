@@ -33,9 +33,11 @@ The output relationship kind.
 
 **Valid Values:**
 
-    'recommends', 'suggests', 'requires', 'conflicts'
+    'recommends', 'suggests', 'none', 'requires', 'conflicts'
 
 Though the last two are reserved for people with `$num_feet > 2` or with shotguns that only fire blanks.
+
+`none` is available since `0.006000` to allow removal of dependencies in conjunction with copying them.
 
 ## `copy_to`
 

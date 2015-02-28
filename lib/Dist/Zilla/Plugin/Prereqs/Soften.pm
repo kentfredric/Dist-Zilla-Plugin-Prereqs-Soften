@@ -38,9 +38,11 @@ B<Default:>
 
 B<Valid Values:>
 
-    'recommends', 'suggests', 'requires', 'conflicts'
+    'recommends', 'suggests', 'none', 'requires', 'conflicts'
 
 Though the last two are reserved for people with C<< $num_feet > 2 >> or with shotguns that only fire blanks.
+
+C<none> is available since C<0.006000> to allow removal of dependencies in conjunction with copying them.
 
 =cut
 
@@ -48,7 +50,7 @@ use Moose::Util::TypeConstraints qw(enum);
 
 has 'to_relationship' => (
   is => ro =>,
-  isa => enum( [qw(requires recommends suggests conflicts)] ),
+  isa => enum( [qw(none requires recommends suggests conflicts)] ),
   lazy    => 1,
   default => sub { 'recommends' },
 );
@@ -193,6 +195,7 @@ sub _soften_prereqs {
   my @target_reqs;
 
   for my $target ( @{ $conf->{to} } ) {
+    next if 'none' eq $target->{relation};
     push @target_reqs, $prereqs->requirements_for( $target->{phase}, $target->{relation} );
   }
 
