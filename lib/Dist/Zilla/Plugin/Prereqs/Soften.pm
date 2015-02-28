@@ -44,6 +44,8 @@ has 'modules' => (
 
 
 
+
+
 use Moose::Util::TypeConstraints qw(enum);
 
 has 'to_relationship' => (
@@ -250,6 +252,8 @@ version 0.006000
     module = Foo
     module = Bar
 
+=head1 DESCRIPTION
+
 This module iterates C<build>, C<require> and C<test> dependency lists and migrates dependencies found in C<.requires> and
 demotes them to C<.recommends>
 
@@ -271,9 +275,11 @@ B<Default:>
 
 B<Valid Values:>
 
-    'recommends', 'suggests', 'requires', 'conflicts'
+    'recommends', 'suggests', 'none', 'requires', 'conflicts'
 
 Though the last two are reserved for people with C<< $num_feet > 2 >> or with shotguns that only fire blanks.
+
+C<none> is available since C<0.006000> to allow 
 
 =head2 C<copy_to>
 

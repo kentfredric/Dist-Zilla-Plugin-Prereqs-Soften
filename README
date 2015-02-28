@@ -1,6 +1,10 @@
 Dist::Zilla::Plugin::Prereqs::Soften
 
+This module iterates "build", "require" and "test" dependency lists and
+migrates dependencies found in ".requires" and demotes them to
+".recommends"
 
+Optionally, it can duplicate softened dependencies to other locations
 
 INSTALLATION
 
