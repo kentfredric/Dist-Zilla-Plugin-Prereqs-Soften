@@ -1,11 +1,10 @@
-use 5.008;    # utf-8
+use 5.006;
 use strict;
 use warnings;
-use utf8;
 
 package Dist::Zilla::Plugin::Prereqs::Soften;
 
-our $VERSION = '0.005001';
+our $VERSION = '0.006000';
 
 # ABSTRACT: Downgrade listed dependencies to recommendations if present.
 
@@ -45,11 +44,13 @@ has 'modules' => (
 
 
 
+
+
 use Moose::Util::TypeConstraints qw(enum);
 
 has 'to_relationship' => (
   is => ro =>,
-  isa => enum( [qw(requires recommends suggests conflicts)] ),
+  isa => enum( [qw(none requires recommends suggests conflicts)] ),
   lazy    => 1,
   default => sub { 'recommends' },
 );
@@ -194,6 +195,7 @@ sub _soften_prereqs {
   my @target_reqs;
 
   for my $target ( @{ $conf->{to} } ) {
+    next if 'none' eq $target->{relation};
     push @target_reqs, $prereqs->requirements_for( $target->{phase}, $target->{relation} );
   }
 
@@ -242,13 +244,15 @@ Dist::Zilla::Plugin::Prereqs::Soften - Downgrade listed dependencies to recommen
 
 =head1 VERSION
 
-version 0.005001
+version 0.006000
 
 =head1 SYNOPSIS
 
     [Prereqs::Soften]
     module = Foo
     module = Bar
+
+=head1 DESCRIPTION
 
 This module iterates C<build>, C<require> and C<test> dependency lists and migrates dependencies found in C<.requires> and
 demotes them to C<.recommends>
@@ -271,9 +275,11 @@ B<Default:>
 
 B<Valid Values:>
 
-    'recommends', 'suggests', 'requires', 'conflicts'
+    'recommends', 'suggests', 'none', 'requires', 'conflicts'
 
 Though the last two are reserved for people with C<< $num_feet > 2 >> or with shotguns that only fire blanks.
+
+C<none> is available since C<0.006000> to allow removal of dependencies in conjunction with copying them.
 
 =head2 C<copy_to>
 
@@ -331,7 +337,7 @@ Kent Fredric <kentnl@cpan.org>
 
 =head1 COPYRIGHT AND LICENSE
 
-This software is copyright (c) 2014 by Kent Fredric <kentfredric@gmail.com>.
+This software is copyright (c) 2015 by Kent Fredric <kentfredric@gmail.com>.
 
 This is free software; you can redistribute it and/or modify it under
 the same terms as the Perl 5 programming language system itself.
