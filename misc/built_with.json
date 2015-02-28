@@ -37,7 +37,7 @@
       "Dist::Zilla::Plugin::Prereqs" : "5.032",
       "Dist::Zilla::Plugin::Prereqs::AuthorDeps" : "0.004",
       "Dist::Zilla::Plugin::Prereqs::Recommend::MatchInstalled" : "0.003001",
-      "Dist::Zilla::Plugin::Prereqs::Soften" : "0.005002",
+      "Dist::Zilla::Plugin::Prereqs::Soften" : "0.006001",
       "Dist::Zilla::Plugin::Prereqs::Upgrade" : "0.001000",
       "Dist::Zilla::Plugin::Readme::Brief" : "0.002004",
       "Dist::Zilla::Plugin::ReadmeAnyFromPod" : "0.150250",
