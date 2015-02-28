@@ -279,7 +279,7 @@ B<Valid Values:>
 
 Though the last two are reserved for people with C<< $num_feet > 2 >> or with shotguns that only fire blanks.
 
-C<none> is available since C<0.006000> to allow 
+C<none> is available since C<0.006000> to allow removal of dependencies in conjunction with copying them.
 
 =head2 C<copy_to>
 
