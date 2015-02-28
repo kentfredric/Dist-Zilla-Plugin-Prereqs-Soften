@@ -195,7 +195,7 @@ sub _soften_prereqs {
   my @target_reqs;
 
   for my $target ( @{ $conf->{to} } ) {
-    next if $target->{relation} eq 'none';
+    next if 'none' eq $target->{relation};
     push @target_reqs, $prereqs->requirements_for( $target->{phase}, $target->{relation} );
   }
 
