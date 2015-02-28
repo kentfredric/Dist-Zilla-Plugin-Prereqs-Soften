@@ -1,7 +1,6 @@
-use 5.008;    # utf-8
+use 5.006;
 use strict;
 use warnings;
-use utf8;
 
 package Dist::Zilla::Plugin::Prereqs::Soften;
 
