@@ -238,6 +238,8 @@ no Moose;
     module = Foo
     module = Bar
 
+=head1 DESCRIPTION
+
 This module iterates C<build>, C<require> and C<test> dependency lists and migrates dependencies found in C<.requires> and
 demotes them to C<.recommends>
 
