@@ -1,9 +1,8 @@
 Release history for Dist-Zilla-Plugin-Prereqs-Soften
 
-0.006001 2015-10-03T10:34:03Z 63d3495
+0.006001 2015-10-03T10:40:00Z f0f58f0
  [Bugfix]
- - GH: #4
- - Lack of validation in copy_to leads to silently dead code paths.
+ - Fix Lack of validation in copy_to leads to silently dead code paths. ( closes GH #4 )
 
  [Dependencies::Stats]
  - Dependencies changed since 0.006000, see misc/*.deps* for details
