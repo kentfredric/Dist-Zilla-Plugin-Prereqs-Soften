@@ -55,4 +55,3 @@ This file contains changes in REQUIRED dependencies for standard CPAN phases (co
 0.002000 2014-02-18T04:54:36Z
  [Added / runtime requires]
  - Moose::Util::TypeConstraints
-
