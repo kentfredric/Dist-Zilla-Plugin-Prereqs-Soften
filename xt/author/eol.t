@@ -1,7 +1,7 @@
 use strict;
 use warnings;
 
-# this test was generated with Dist::Zilla::Plugin::Test::EOL 0.17
+# this test was generated with Dist::Zilla::Plugin::Test::EOL 0.18
 
 use Test::More 0.88;
 use Test::EOL;
@@ -15,7 +15,8 @@ my @files = (
     't/02-to_relationship-suggested.t',
     't/03-copy_to-develop-requires.t',
     't/04-modules_from_features.t',
-    't/05-to_relationship-none.t'
+    't/05-to_relationship-none.t',
+    't/06-bad-copy_to.t'
 );
 
 eol_unix_ok($_, { trailing_whitespace => 1 }) foreach @files;

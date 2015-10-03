@@ -1,6 +1,8 @@
 This file contains changes in REQUIRED dependencies for standard CPAN phases (configure/build/runtime/test)
 
-0.006000
+0.006001
+
+0.006000 2015-02-28T05:31:26Z
  [Added / configure requires]
  - perl 5.006
 
@@ -53,4 +55,3 @@ This file contains changes in REQUIRED dependencies for standard CPAN phases (co
 0.002000 2014-02-18T04:54:36Z
  [Added / runtime requires]
  - Moose::Util::TypeConstraints
-

@@ -4,7 +4,7 @@ use warnings;
 
 package Dist::Zilla::Plugin::Prereqs::Soften;
 
-our $VERSION = '0.006000';
+our $VERSION = '0.006001';
 
 # ABSTRACT: Downgrade listed dependencies to recommendations if present.
 
@@ -141,8 +141,11 @@ sub _build__copy_to_extras {
   my $self = shift;
   my $to   = [];
   for my $copy ( @{ $self->copy_to } ) {
-    next unless ( my ( $copy_phase, $copy_rel ) = $copy =~ /\A([^.]+)[.](.+)\z/msx );
-    push @{$to}, { phase => $copy_phase, relation => $copy_rel };
+    if ( my ( $copy_phase, $copy_rel ) = $copy =~ /\A([^.]+)[.](.+)\z/msx ) {
+      push @{$to}, { phase => $copy_phase, relation => $copy_rel };
+      next;
+    }
+    return $self->log_fatal(['copy_to contained value not in form: phase.relation, got %s', $copy ]);
   }
   return $to;
 }
@@ -244,7 +247,7 @@ Dist::Zilla::Plugin::Prereqs::Soften - Downgrade listed dependencies to recommen
 
 =head1 VERSION
 
-version 0.006000
+version 0.006001
 
 =head1 SYNOPSIS
 
