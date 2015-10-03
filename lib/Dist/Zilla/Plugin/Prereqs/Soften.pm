@@ -143,7 +143,9 @@ sub _build__copy_to_extras {
   for my $copy ( @{ $self->copy_to } ) {
     if ( my ( $copy_phase, $copy_rel ) = $copy =~ /\A([^.]+)[.](.+)\z/msx ) {
       push @{$to}, { phase => $copy_phase, relation => $copy_rel };
+      next;
     }
+    return $self->log_fatal(['copy_to contained value not in form: phase.relation, got %s', $copy ]);
   }
   return $to;
 }

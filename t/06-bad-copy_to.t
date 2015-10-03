@@ -10,7 +10,6 @@ use Test::More;
 
 use Test::DZil qw(simple_ini);
 use Dist::Zilla::Util::Test::KENTNL 1.003002 qw( dztest );
-our $TODO = "Bug #4";
 my $test = dztest();
 my @ini;
 
