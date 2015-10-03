@@ -4,7 +4,7 @@ use warnings;
 
 package Dist::Zilla::Plugin::Prereqs::Soften;
 
-our $VERSION = '0.006001';
+our $VERSION = '0.006002';
 
 # ABSTRACT: Downgrade listed dependencies to recommendations if present.
 
