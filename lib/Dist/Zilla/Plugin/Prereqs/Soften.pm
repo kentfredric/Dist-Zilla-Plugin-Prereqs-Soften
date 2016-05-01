@@ -12,7 +12,6 @@ our $VERSION = '0.006002';
 
 use Moose qw( with has around );
 use MooseX::Types::Moose qw( ArrayRef HashRef Str Bool );
-use Dist::Zilla::Util::ConfigDumper qw( config_dumper );
 with 'Dist::Zilla::Role::PrereqSource';
 
 =attr C<modules>
@@ -134,6 +133,25 @@ has '_modules_hash' => (
   lazy    => 1,
   builder => _build__modules_hash =>,
 );
+
+around dump_config => sub {
+  my ( $orig, $self, @args ) = @_;
+  my $config = $self->$orig(@args);
+  my $payload = $config->{ +__PACKAGE__ } = {};
+
+  $payload->{modules}               = $self->modules;
+  $payload->{to_relationship}       = $self->to_relationship;
+  $payload->{copy_to}               = $self->copy_to;
+  $payload->{modules_from_features} = $self->modules_from_features;
+
+  # inject $VERSION when subclassed
+  $payload->{ q[$] . __PACKAGE__ . q[::VERSION] } = $VERSION unless __PACKAGE__ eq ref $self;
+  return $config;
+};
+
+__PACKAGE__->meta->make_immutable;
+no Moose;
+
 sub mvp_multivalue_args { return qw(modules copy_to) }
 sub mvp_aliases { return { 'module' => 'modules' } }
 
@@ -187,8 +205,6 @@ sub _user_wants_softening_on {
   return exists $self->_modules_hash->{$module};
 }
 
-around dump_config => config_dumper( __PACKAGE__, qw( modules to_relationship copy_to modules_from_features ) );
-
 sub _soften_prereqs {
   my ( $self, $conf ) = @_;
   my $prereqs = $self->zilla->prereqs;
@@ -229,9 +245,6 @@ sub register_prereqs {
   }
   return;
 }
-
-__PACKAGE__->meta->make_immutable;
-no Moose;
 
 1;
 

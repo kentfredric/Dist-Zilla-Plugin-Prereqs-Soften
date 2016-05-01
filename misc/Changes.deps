@@ -5,6 +5,9 @@ This file contains changes in REQUIRED dependencies for standard CPAN phases (co
  - Path::Tiny
  - Test::Differences
 
+ [Removed / runtime requires]
+ - Dist::Zilla::Util::ConfigDumper
+
  [Removed / test requires]
  - Dist::Zilla::Util::Test::KENTNL 1.003002
 
