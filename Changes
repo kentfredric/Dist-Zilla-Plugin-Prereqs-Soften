@@ -1,6 +1,8 @@
 Release history for Dist-Zilla-Plugin-Prereqs-Soften
 
 {{$NEXT}}
+
+0.006002 2016-05-01T18:03:38Z f9ed7c0
  - Remove usage of dztest. Ironic, seeing this module is where I invented that. So many regrets.
  - Fix test failure with newer OptionalFeature due to injected depedencies.
  - Don't use my Config::Dumper magic, hardcode logic simply.
