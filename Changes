@@ -2,6 +2,7 @@ Release history for Dist-Zilla-Plugin-Prereqs-Soften
 
 {{$NEXT}}
  - Remove usage of dztest. Ironic, seeing this module is where I invented that. So many regrets.
+ - Fix test failure with newer OptionalFeature due to injected depedencies.
 
  [Dependencies::Stats]
  - Dependencies changed since 0.006001, see misc/*.deps* for details
