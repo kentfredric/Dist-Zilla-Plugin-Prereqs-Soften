@@ -17,6 +17,24 @@ use Test::DZil qw(simple_ini Builder);
 use Path::Tiny qw( path );
 use Test::Differences qw( eq_or_diff );
 
+my $of_config = [ 'OptionalFeature' => 'Example', { '-description' => 'An example feature', 'Foo' => 2, } ];
+my $expected_yaml = {
+  configure => { requires   => { 'ExtUtils::MakeMaker' => '0', }, },
+  runtime   => { recommends => { 'Foo'                 => '1' } },
+  develop   => { requires   => { 'Foo'                 => '2' } },
+};
+
+local $@;
+
+if ( eval { Dist::Zilla::Plugin::OptionalFeature->VERSION('0.022'); 1 } ) {
+  $of_config->[2]->{'-always_suggest'} = 0;
+  $expected_yaml->{configure}->{requires} = {
+    %{ $expected_yaml->{configure}->{requires} },
+    'CPAN::Meta::Requirements' => '2.120620',
+    'Module::Metadata'         => 0,
+  };
+}
+
 my $tzil = Builder->from_config(
   { dist_root => 'invalid' },
   {
@@ -25,9 +43,9 @@ my $tzil = Builder->from_config(
 
         [ 'Prereqs', { 'Foo' => 1 } ],    #
         ['MakeMaker'],                    #
-        [ 'OptionalFeature', 'Example', { '-description' => 'An example feature', 'Foo' => 2 } ],    #
-        [ 'Prereqs::Soften', { 'modules_from_features' => 1 } ],                                     #
-        ['GatherDir'],                                                                               #
+        $of_config,                       #
+        [ 'Prereqs::Soften', { 'modules_from_features' => 1 } ],    #
+        ['GatherDir'],                                              #
       ),
       path( 'source', 'lib', 'E.pm' ) => <<'EO_EPM',
 use strict;
@@ -52,14 +70,7 @@ $tzil->chrome->logger->set_debug(1);
 
 $tzil->build;
 
-eq_or_diff(
-  $tzil->prereqs->as_string_hash,
-  {
-    configure => { requires   => { 'ExtUtils::MakeMaker' => '0' } },
-    runtime   => { recommends => { 'Foo'                 => '1' } },
-    develop   => { requires   => { 'Foo'                 => '2' } },
-  }
-);
+eq_or_diff( $tzil->prereqs->as_string_hash, $expected_yaml );
 
 done_testing;
 
