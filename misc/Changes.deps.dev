@@ -1,6 +1,10 @@
 This file contains changes to DEVELOPMENT dependencies only ( both REQUIRED and OPTIONAL )
 
-0.006001
+0.006002
+ [Changed / develop suggests]
+ - Dist::Zilla::PluginBundle::Author::KENTNL 2.025002 → 2.025010
+
+0.006001 2015-10-03T10:40:00Z
  [Added / develop requires]
  - Dist::Zilla::Plugin::Author::KENTNL::CONTRIBUTING 0.001003
  - Dist::Zilla::Plugin::MetaYAML::Minimal
