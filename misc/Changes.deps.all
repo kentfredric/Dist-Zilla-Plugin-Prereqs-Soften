@@ -11,6 +11,9 @@ This file contains ALL changes in dependencies in both REQUIRED / OPTIONAL depen
  [Changed / develop suggests]
  - Dist::Zilla::PluginBundle::Author::KENTNL 2.025002 → 2.025010
 
+ [Removed / runtime requires]
+ - Dist::Zilla::Util::ConfigDumper
+
  [Removed / test requires]
  - Dist::Zilla::Util::Test::KENTNL 1.003002
 

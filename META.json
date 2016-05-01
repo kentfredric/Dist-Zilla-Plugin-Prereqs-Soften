@@ -106,7 +106,6 @@
          },
          "requires" : {
             "Dist::Zilla::Role::PrereqSource" : "0",
-            "Dist::Zilla::Util::ConfigDumper" : "0",
             "Moose" : "0",
             "Moose::Util::TypeConstraints" : "0",
             "MooseX::Types::Moose" : "0",

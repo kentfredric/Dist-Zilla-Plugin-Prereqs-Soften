@@ -18,7 +18,6 @@ my %WriteMakefileArgs = (
   "NAME" => "Dist::Zilla::Plugin::Prereqs::Soften",
   "PREREQ_PM" => {
     "Dist::Zilla::Role::PrereqSource" => 0,
-    "Dist::Zilla::Util::ConfigDumper" => 0,
     "Moose" => 0,
     "Moose::Util::TypeConstraints" => 0,
     "MooseX::Types::Moose" => 0
@@ -41,7 +40,6 @@ my %WriteMakefileArgs = (
 
 my %FallbackPrereqs = (
   "Dist::Zilla::Role::PrereqSource" => 0,
-  "Dist::Zilla::Util::ConfigDumper" => 0,
   "ExtUtils::MakeMaker" => 0,
   "File::Spec" => 0,
   "Moose" => 0,
