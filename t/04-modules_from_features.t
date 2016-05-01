@@ -12,20 +12,24 @@ use Test::Requires {
   'Dist::Zilla::Plugin::OptionalFeature' => 0,
   'Dist::Zilla'                          => 5.020,    # EUMM Ver = 0
 };
-use Test::DZil qw(simple_ini);
-use Dist::Zilla::Util::Test::KENTNL 1.003002 qw( dztest );
 
-my $test = dztest();
-my @ini;
+use Test::DZil qw(simple_ini Builder);
+use Path::Tiny qw( path );
+use Test::Differences qw( eq_or_diff );
 
-push @ini, [ 'Prereqs', { 'Foo' => 1 } ];
-push @ini, ['MakeMaker'];
-push @ini, [ 'OptionalFeature', 'Example', { '-description' => 'An example feature', 'Foo' => 2 } ];
-push @ini, [ 'Prereqs::Soften', { 'modules_from_features' => 1 } ];
-push @ini, ['GatherDir'];
+my $tzil = Builder->from_config(
+  { dist_root => 'invalid' },
+  {
+    add_files => {
+      path( 'source', 'dist.ini' ) => simple_ini(
 
-$test->add_file( 'dist.ini', simple_ini(@ini) );
-$test->add_file( 'lib/E.pm', <<'EO_EPM');
+        [ 'Prereqs', { 'Foo' => 1 } ],    #
+        ['MakeMaker'],                    #
+        [ 'OptionalFeature', 'Example', { '-description' => 'An example feature', 'Foo' => 2 } ],    #
+        [ 'Prereqs::Soften', { 'modules_from_features' => 1 } ],                                     #
+        ['GatherDir'],                                                                               #
+      ),
+      path( 'source', 'lib', 'E.pm' ) => <<'EO_EPM',
 use strict;
 use warnings;
 
@@ -37,10 +41,19 @@ use Moose;
 with 'Dist::Zilla::Role::Plugin';
 
 1;
+
 EO_EPM
 
-$test->build_ok;
-$test->prereqs_deeply(
+    }
+  }
+);
+
+$tzil->chrome->logger->set_debug(1);
+
+$tzil->build;
+
+eq_or_diff(
+  $tzil->prereqs->as_string_hash,
   {
     configure => { requires   => { 'ExtUtils::MakeMaker' => '0' } },
     runtime   => { recommends => { 'Foo'                 => '1' } },
