@@ -3,10 +3,11 @@ abstract: 'Downgrade listed dependencies to recommendations if present.'
 author:
   - 'Kent Fredric <kentnl@cpan.org>'
 build_requires:
-  Dist::Zilla::Util::Test::KENTNL: '1.003002'
   ExtUtils::MakeMaker: '0'
   File::Spec: '0'
+  Path::Tiny: '0'
   Test::DZil: '0'
+  Test::Differences: '0'
   Test::More: '0.89'
   Test::Requires: '0'
   perl: '5.006'
