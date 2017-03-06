@@ -10,6 +10,10 @@ Release history for Dist-Zilla-Plugin-Prereqs-Soften
  - develop: +1 ↑1 (suggests: ↑2)
  - test: ↓1
 
+ [Internals]
+ - Add much more extensive logging about decision making, including outcomes of each decision
+ - Closes https://github.com/kentnl/Dist-Zilla-Plugin-Prereqs-Soften/issues/5
+
 0.006002 2016-05-01T18:03:38Z f9ed7c0
  - Remove usage of dztest. Ironic, seeing this module is where I invented that. So many regrets.
  - Fix test failure with newer OptionalFeature due to injected depedencies.
