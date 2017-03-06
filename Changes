@@ -1,6 +1,6 @@
 Release history for Dist-Zilla-Plugin-Prereqs-Soften
 
-0.006003 2017-03-06T04:50:30Z 73bd646
+0.006003 2017-03-06T04:53:19Z f764946
  [Bugfix]
  - Avoid testing issues under -Ddefault_inc_excludes_dot
  - Closes https://github.com/kentnl/Dist-Zilla-Plugin-Prereqs-Soften/issues/6
