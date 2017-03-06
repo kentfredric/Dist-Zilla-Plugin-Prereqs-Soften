@@ -1,6 +1,14 @@
 Release history for Dist-Zilla-Plugin-Prereqs-Soften
 
 {{$NEXT}}
+ [Bugfix]
+ - Avoid testing issues under -Ddefault_inc_excludes_dot
+ - Closes https://github.com/kentnl/Dist-Zilla-Plugin-Prereqs-Soften/issues/6
+
+ [Dependencies::Stats]
+ - Dependencies changed since 0.006002, see misc/*.deps* for details
+ - develop: +1 ↑1 (suggests: ↑2)
+ - test: ↓1
 
 0.006002 2016-05-01T18:03:38Z f9ed7c0
  - Remove usage of dztest. Ironic, seeing this module is where I invented that. So many regrets.
