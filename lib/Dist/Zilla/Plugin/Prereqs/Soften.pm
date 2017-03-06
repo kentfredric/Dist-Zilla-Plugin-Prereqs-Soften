@@ -163,7 +163,7 @@ sub _build__copy_to_extras {
       push @{$to}, { phase => $copy_phase, relation => $copy_rel };
       next;
     }
-    return $self->log_fatal(['copy_to contained value not in form: phase.relation, got %s', $copy ]);
+    return $self->log_fatal( [ 'copy_to contained value not in form: phase.relation, got %s', $copy ] );
   }
   return $to;
 }
@@ -183,6 +183,7 @@ sub _get_feature_modules {
       for my $phase_name ( keys %{$rel} ) {
         my $phase = $rel->{$phase_name};
         for my $module ( keys %{$phase} ) {
+          $self->log_debug("Got module ${module} from ${feature}.${rel_name}.${phase}");
           $hash->{$module} = 1;
         }
       }
@@ -215,15 +216,38 @@ sub _soften_prereqs {
 
   for my $target ( @{ $conf->{to} } ) {
     next if 'none' eq $target->{relation};
-    push @target_reqs, $prereqs->requirements_for( $target->{phase}, $target->{relation} );
+    push @target_reqs,
+      {
+      phase    => $target->{phase},
+      relation => $target->{relation},
+      reqs     => $prereqs->requirements_for( $target->{phase}, $target->{relation} ),
+      };
   }
 
   for my $module ( $source_reqs->required_modules ) {
     next unless $self->_user_wants_softening_on($module);
+    $self->log_debug("$conf->{from_phase}.$conf->{from_relation} contains $module");
     my $reqstring = $source_reqs->requirements_for_module($module);
+    $self->log_debug( [ ' - %-20s %s = %s', "$conf->{from_phase}.$conf->{from_relation}", $module, $reqstring ] );
     $source_reqs->clear_requirement($module);
     for my $target (@target_reqs) {
-      $target->add_string_requirement( $module, $reqstring );
+      my $old_string = $target->{reqs}->requirements_for_module($module);
+      $target->{reqs}->add_string_requirement( $module, $reqstring );
+      my $new_string = $target->{reqs}->requirements_for_module($module);
+
+      # Calcluating the nature of the change for log debugging
+      my $change =
+          ( defined $old_string )
+        ? ( $old_string eq $new_string )
+          ? ( $new_string eq $reqstring )
+            ? " (was already \"$new_string\")"
+            : " (unchanged from \"$old_string\")"
+          : " (was \"$old_string\", now \"$new_string\")"
+        : ( defined $new_string ) ? ' (new requirement)'
+        :                           ' (Possible Error, undef after assignment)';
+
+      $self->log_debug( [ ' + %-20s %s = %s%s', "$target->{phase}.$target->{relation}", $module, $reqstring, $change ] );
+
     }
   }
   return $self;
@@ -232,6 +256,7 @@ sub _soften_prereqs {
 sub register_prereqs {
   my ($self) = @_;
 
+  $self->log_debug( [ 'Softening modules: %s', join q[, ], sort keys %{ $self->_modules_hash } ] );
   for my $phase (qw( build test runtime )) {
     for my $relation (qw( requires )) {
       $self->_soften_prereqs(
