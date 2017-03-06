@@ -137,7 +137,7 @@
    "provides" : {
       "Dist::Zilla::Plugin::Prereqs::Soften" : {
          "file" : "lib/Dist/Zilla/Plugin/Prereqs/Soften.pm",
-         "version" : "0.006003"
+         "version" : "0.006004"
       }
    },
    "release_status" : "stable",
@@ -152,7 +152,7 @@
          "web" : "https://github.com/kentnl/Dist-Zilla-Plugin-Prereqs-Soften"
       }
    },
-   "version" : "0.006003",
+   "version" : "0.006004",
    "x_BuiltWith" : {
       "external_file" : "misc/built_with.json"
    },
@@ -694,7 +694,7 @@
                   "branch" : null,
                   "changelog" : "Changes",
                   "signed" : 0,
-                  "tag" : "0.006003-source",
+                  "tag" : "0.006004-source",
                   "tag_format" : "%v-source",
                   "tag_message" : "v%v"
                },
@@ -788,7 +788,7 @@
                   "branch" : "releases",
                   "changelog" : "Changes",
                   "signed" : 0,
-                  "tag" : "0.006003",
+                  "tag" : "0.006004",
                   "tag_format" : "%v",
                   "tag_message" : "v%v"
                },
@@ -910,7 +910,7 @@
                }
             },
             "name" : "Prereqs::Soften",
-            "version" : "0.006003"
+            "version" : "0.006004"
          },
          {
             "class" : "Dist::Zilla::Plugin::FinderCode",

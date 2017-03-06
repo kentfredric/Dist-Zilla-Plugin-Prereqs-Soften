@@ -1,6 +1,8 @@
 This file contains ALL changes in dependencies in both REQUIRED / OPTIONAL dependencies for all phases (configure/build/runtime/test/develop)
 
-0.006003
+0.006004
+
+0.006003 2017-03-06T04:53:19Z
  [Added / develop requires]
  - Dist::Zilla::Plugin::lib
  - Test::MinimumVersion

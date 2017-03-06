@@ -24,7 +24,7 @@ name: Dist-Zilla-Plugin-Prereqs-Soften
 provides:
   Dist::Zilla::Plugin::Prereqs::Soften:
     file: lib/Dist/Zilla/Plugin/Prereqs/Soften.pm
-    version: '0.006003'
+    version: '0.006004'
 recommends:
   Moose: '2.000'
   strict: '0'
@@ -39,4 +39,4 @@ resources:
   bugtracker: https://github.com/kentnl/Dist-Zilla-Plugin-Prereqs-Soften/issues
   homepage: https://github.com/kentnl/Dist-Zilla-Plugin-Prereqs-Soften
   repository: https://github.com/kentnl/Dist-Zilla-Plugin-Prereqs-Soften.git
-version: '0.006003'
+version: '0.006004'
